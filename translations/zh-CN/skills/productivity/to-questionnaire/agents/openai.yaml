@@ -1,0 +1,5 @@
+interface:
+  display_name: "转成问卷"
+  short_description: "先把问题整理成文档，交给别人作答"
+policy:
+  allow_implicit_invocation: false

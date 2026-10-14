@@ -1,0 +1,5 @@
+interface:
+  display_name: "实施规格说明"
+  short_description: "在代码中实现规格说明的结果。"
+policy:
+  allow_implicit_invocation: false

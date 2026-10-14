@@ -10,6 +10,8 @@
 
 # Skills For Real Engineers
 
+[中文审阅译本](./translations/README.md)
+
 [![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
 
 My agent skills that I use every day to do real engineering - not vibe coding.
