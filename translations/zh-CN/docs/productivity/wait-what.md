@@ -1,6 +1,6 @@
 ## 功能
 
-你没有听懂某条消息时，可以输入 `wait-what`。[代理](https://www.aihero.dev/ai-coding-dictionary/agent)会换种说法重新讲刚才的内容，补上你缺少的背景，使用平实的英语，并采用项目 `GLOSSARY.md` 中的词汇。
+你没有听懂某条消息时，可以输入 `wait-what`。[代理](https://www.aihero.dev/ai-coding-dictionary/agent)会换种说法重新讲刚才的内容，补上你缺少的背景，使用通俗平实的语言，并结合项目 `GLOSSARY.md` 中的词汇重新表述。
 
 此技能只有三行。这是刻意的设计，不是未完成的草稿。用于减少冗长表达的技能常常会失败，因为它们会变得太长。四百行的简洁写作技能仍会让[模型](https://www.aihero.dev/ai-coding-dictionary/model)写得冗长，因为模型会仿照技能的长度，而不是遵循它的要求。此技能只有一个精确的引导词，没有其他内容。
 

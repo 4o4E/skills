@@ -38,7 +38,7 @@
 
 第三行最容易让人意外。`GLOSSARY.md` 只是术语表，不包含实现细节、[规格说明](https://www.aihero.dev/ai-coding-dictionary/spec)或草稿笔记。ADR 必须同时符合三项条件，因此大多数决定不符合条件，大多数会话也不会生成 ADR。会话使术语表更明确但没有生成 ADR，说明它按设计正常工作；但这也意味着大多数你们达成一致的内容只存在于当时的[上下文窗口](https://www.aihero.dev/ai-coding-dictionary/context-window)中。将同一段对话交给 [to-spec](https://aihero.dev/skills-to-spec)，不要清空它（参阅[清理上下文](https://www.aihero.dev/ai-coding-dictionary/clearing)）。
 
-术语表是主要产物。此技能建立领域语言：项目已经达成一致的专用词汇，让你、代理和同事无需再次推敲它们。并非所有人都同意这能提升代理性能。最强烈的反对理由是：对于[模型](https://www.aihero.dev/ai-coding-dictionary/model)，术语和它的通俗英语解释会产生相同结果，而词汇主要缩短了共享这些术语的人类之间的沟通。按照这种观点，术语表仍然有价值，但受益者是人。
+术语表是主要产物。此技能建立领域语言：项目已经达成一致的专用词汇，让你、代理和同事无需再次推敲它们。并非所有人都同意这能提升代理性能。最强烈的反对理由是：对于[模型](https://www.aihero.dev/ai-coding-dictionary/model)，术语和通俗直白的自然语言解释会产生相同的结果，而专业词汇主要缩短了共享这些术语的人类之间的沟通成本。按照这种观点，术语表仍然有价值，但受益者是人。
 
 ## 常见问题
 

@@ -12,7 +12,7 @@
 
 [![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
 
-这是我日常用于真正工程工作的一组代理技能，不用于氛围式编程。
+这套智能体技能是我日常从事严谨工程开发使用的工具，而非用来随性写代码（vibe coding）。
 
 开发真正的应用很难。GSD、BMAD 和 Spec-Kit 等方法试图通过接管流程来提供帮助。但这样做会剥夺你的控制权，也会让流程中的缺陷难以解决。
 
@@ -24,7 +24,7 @@
 
 ## 安装（30 秒完成设置）
 
-插件会自行更新。[skills.sh](https://skills.sh/mattpocock/skills) 会将可编辑文件复制到项目中，你需要手动更新。每个代理只选择一种安装方式，因为同时安装两种会让每项技能重复出现。
+插件会自行更新。[skills.sh](https://skills.sh/mattpocock/skills) 会将可编辑文件复制到项目中，你需要手动更新。每种代理工具只选择一种安装方式，避免重复安装导致每项技能重复出现。
 
 ### 1. 获取技能
 
@@ -69,7 +69,7 @@ copilot plugin install mattpocock-skills@mattpocock
 }
 ```
 
-在 VS Code 中运行 **Chat: Install Plugin From Source**，并输入 `https://github.com/mattpocock/skills`。它每天会更新。
+在 VS Code 中运行 **Chat: Install Plugin From Source**，并输入 `https://github.com/mattpocock/skills`。它每天会自动更新。
 
 </details>
 
@@ -104,7 +104,7 @@ npx skills@latest add mattpocock/skills -a <agent>  # cursor, opencode, devin, w
 - 询问你在分流工单时使用哪些标签（`/triage` 会使用这些标签）
 - 询问你想将我们创建的文档保存到哪里
 
-### 3. 就这样，已经可以开始使用。
+### 3. 完成以上步骤后，即可开始使用。
 
 ## 创建这些技能的原因
 
@@ -125,7 +125,7 @@ npx skills@latest add mattpocock/skills -a <agent>  # cursor, opencode, devin, w
 - [`/grill-me`](./skills/productivity/grill-me/SKILL.md)：用于非代码工作
 - [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md)：与 [`/grill-me`](./skills/productivity/grill-me/SKILL.md) 相同，但还会提供其他功能（见下文）
 
-这是我最受欢迎的两项技能。它们会在工作开始前帮助你和代理明确目标，也让你深入思考要做的变更。每次准备进行变更时都使用它们。
+这是我最受欢迎的两项技能。它们会在工作开始前帮助你和代理明确目标，也让你深入思考要做的变更。建议每次准备修改代码时都使用。
 
 ### #2：代理说得太多
 
@@ -155,7 +155,7 @@ npx skills@latest add mattpocock/skills -a <agent>  # cursor, opencode, devin, w
 
 这项能力已纳入 [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md)。它是一场追问会话，能帮助你与人工智能建立共同语言，并在 ADR 中记录难以解释的决定。
 
-很难说明这项能力有多强。它可能是此代码仓库中最出色的技巧。试试看吧。
+这项能力的效果极为突出，可能是本仓库中最实用的技巧，值得一试。
 
 > [!TIP]
 > 共同语言还有许多其他好处，不只减少冗长表达：
@@ -224,7 +224,7 @@ npx skills@latest add mattpocock/skills -a <agent>  # cursor, opencode, devin, w
 - **[to-spec](./skills/engineering/to-spec/SKILL.md)**：将当前对话转成规格说明并发布到议题跟踪系统。不进行访谈，只归纳你已经讨论的内容。
 - **[to-tickets](./skills/engineering/to-tickets/SKILL.md)**：将任何计划、规格说明或对话拆分成一组曳光弹（tracer bullet）工单，逐项说明阻塞关系，可以写入本地文件，也可以在实际议题跟踪系统中建立原生阻塞链接。
 - **[implement](./skills/engineering/implement/SKILL.md)**：根据规格说明或工单集合开展工作，在预先同意的接缝处使用 `/tdd`，提交前使用 `/code-review` 完成审查。
-- **[implement-spec](./skills/engineering/implement-spec/SKILL.md)**：在单一集成分支上实施完整规格说明。将工单作为任务图处理，在已准备好的前沿上运行实施子代理以提高并行度，然后使用 `/code-review` 完成审查。
+- **[implement-spec](./skills/engineering/implement-spec/SKILL.md)**：在单一集成分支上实施完整规格说明。将工单作为任务拓扑图处理，并发调度实施子代理处理所有已就绪的前沿工单，实现最大并发度，最后通过 `/code-review` 完成审查。
 - **[wayfinder](./skills/engineering/wayfinder/SKILL.md)**：将大到无法由一个代理会话完成的工作，规划成议题跟踪系统中的共享决策工单地图；逐项处理决定，直到清楚该如何到达目标。
 - **[retro](./skills/engineering/retro/SKILL.md)**：会话结束后提出改进编码代理环境的建议（导航、自动检查、编码规范、指导文件、工具），优先指出严重程度最高的问题。
 
@@ -237,7 +237,7 @@ npx skills@latest add mattpocock/skills -a <agent>  # cursor, opencode, devin, w
 - **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)**：主动建立并明确项目领域模型：根据词汇表质疑术语，使用边缘情境进行压力测试，并在对话中更新 `GLOSSARY.md` 和 ADR。
 - **[codebase-design](./skills/engineering/codebase-design/SKILL.md)**：设计深层模块时遵循共同的纪律和词汇：少量接口承载大量行为，将模块放在清晰的接缝处，并确保可以通过接口进行测试。
 - **[code-review](./skills/engineering/code-review/SKILL.md)**：从固定基准点审查差异，分为两个方面：**编码标准（Standards）**（是否遵循代码仓库规范，并参照 Fowler 的代码异味基准？）和**规格说明（Spec）**（是否忠实实施源议题或规格说明？）；由并行子代理分别执行，避免相互影响。
-- **[pr](./skills/engineering/pr/SKILL.md)**：决定拉取请求正文的格式：以最精简的图示说明变更，提供前后证据证明变更有效，并判断合并风险（单向还是双向决策，以及影响范围）。
+- **[pr](./skills/engineering/pr/SKILL.md)**：规范拉取请求（PR）正文格式：以最精简的图示说明变更，提供前后证据证明变更有效，并评估合并风险（单向门还是双向门，以及影响范围）。
 - **[wizard](./skills/engineering/wizard/SKILL.md)**：制作交互式 Bash 向导，引导人类完成只有他们能做的步骤：配置基础设施、设置凭据或 CI 机密、操作不熟悉的第三方控制台，或执行一次性迁移和切换。
 
 ### 效率
@@ -250,7 +250,7 @@ npx skills@latest add mattpocock/skills -a <agent>  # cursor, opencode, devin, w
 - **[handoff](./skills/productivity/handoff/SKILL.md)**：将当前对话整理成交接文档，让另一位代理可以继续工作。
 - **[teach](./skills/productivity/teach/SKILL.md)**：在多次会话中，使用当前目录作为有状态教学工作区，教用户一项新技能或概念。
 - **[to-questionnaire](./skills/productivity/to-questionnaire/SKILL.md)**：将你无法独自决定的事项转成 Markdown 问卷，交给唯一能够回答的人，由对方异步填写或在会议中共同填写。它只会追问发送方式（发给谁、需要什么回复），不会追问主题。
-- **[wait-what](./skills/productivity/wait-what/SKILL.md)**：消息没有讲明白时立即调用。代理会补充你缺少的背景，使用平实的英语，并采用 `GLOSSARY.md` 中的词汇重新表达。
+- **[wait-what](./skills/productivity/wait-what/SKILL.md)**：消息没有讲明白时立即调用。代理会补充你缺少的背景，使用通俗平实的语言，并结合 `GLOSSARY.md` 中的词汇重新表达。
 
 **由模型调用**
 

@@ -10,7 +10,7 @@
 - **[handoff](./handoff/SKILL.md)**：将当前对话整理成交接文档，让另一位代理可以继续工作。
 - **[teach](./teach/SKILL.md)**：在多次会话中，使用当前目录作为有状态教学工作区，教用户一项新技能或概念。
 - **[to-questionnaire](./to-questionnaire/SKILL.md)**：将你无法独自决定的事项转成 Markdown 问卷，交给唯一能够回答的人（由对方异步填写，或在会议中共同填写）。
-- **[wait-what](./wait-what/SKILL.md)**：消息没有讲明白时立即调用。代理会补充你缺少的背景，使用平实的英语，并采用 `GLOSSARY.md` 中的词汇重新表达。
+- **[wait-what](./wait-what/SKILL.md)**：消息没有讲明白时立即调用。代理会补充你缺少的背景，使用通俗平实的语言，并结合 `GLOSSARY.md` 中的词汇重新表述。
 
 ## 由模型调用
 

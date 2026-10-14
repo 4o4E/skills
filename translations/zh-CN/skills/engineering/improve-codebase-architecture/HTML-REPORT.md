@@ -105,7 +105,7 @@
 
 ## 语气
 
-使用简单英语，简洁表达；架构名词和动词直接取自 `/codebase-design` 技能。简洁不代表可以偏离用词。
+语言通俗简练；架构名词和动词直接取自 `/codebase-design` 技能。简练不代表可以偏离用词。
 
 **准确使用：** module、interface、implementation、depth、deep、shallow、seam、adapter、leverage、locality。
 

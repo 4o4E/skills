@@ -1,6 +1,6 @@
 # Matt Pocock 技能
 
-由我日常使用的一组代理技能（斜线命令和行为），通过 Claude Code 加载。技能按类别组织，并由 `/setup-matt-pocock-skills` 生成的每个代码仓库配置使用。
+这套智能体技能包含日常使用的各类命令与行为规范，通过 Claude Code 加载运行。所有技能按类别划分，并通过 `/setup-matt-pocock-skills` 为代码仓库完成专属配置。
 
 ## 术语
 
