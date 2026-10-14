@@ -1,0 +1,5 @@
+interface:
+  display_name: "回顾"
+  short_description: "对编程会话进行回顾"
+policy:
+  allow_implicit_invocation: false
