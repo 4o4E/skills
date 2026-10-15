@@ -1,6 +1,6 @@
 ## 它的作用
 
-`ask-matt` 是本仓库技能的路由器。你描述所处的情形（有一个无从着手的想法、一堆新收到的错误报告、已经持续很久的[会话](https://www.aihero.dev/ai-coding-dictionary/session)），它会指出适合的技能或技能顺序，以及这段流程中哪些地方需要人作决定。
+`ask-matt` 是本仓库技能的路由器。你描述所处的情形(有一个无从着手的想法、一堆新收到的错误报告、已经持续很久的[会话](https://www.aihero.dev/ai-coding-dictionary/session))，它会指出适合的技能或技能顺序，以及这段流程中哪些地方需要人作决定。
 
 它只提出建议，然后停止。它不会深入追问、编写[规格说明](https://www.aihero.dev/ai-coding-dictionary/spec)、打开文件，也不会运行刚才提到的技能；它给你的只是下一步应该输入的内容，由你亲自输入。它也是一张由人手动维护的本仓库技能地图，而不是对已安装技能进行扫描，因此不会为你引导到自有技能或其他作者的技能。
 
@@ -20,13 +20,13 @@
 
 路由器会提到技能，但不会安装技能。它所指向的每项技能都必须已经安装，建议才可执行，而且它只了解本仓库中已正式发布的技能。
 
-依赖议题跟踪系统的路径（triage、`to-spec`、`to-tickets`、`implement`）都假定本仓库已通过 [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) 配置议题跟踪系统。即使还没有完成设置，路由器仍然会建议使用这些技能。
+依赖议题跟踪系统的路径(triage、`to-spec`、`to-tickets`、`implement`)都假定本仓库已通过 [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) 配置议题跟踪系统。即使还没有完成设置，路由器仍然会建议使用这些技能。
 
 ## 工作流程，而不是技能清单
 
-技能描述的首要概念是**工作流程**，即一条*穿过*多项技能的路径，而不是单独一项技能。当你说明自己的情形时，路由器会将你放在某条工作流程的某个步骤上。这不同于“以下是与你的关键词匹配的技能”。有五类路径，技能正文会详细说明：
+技能描述的首要概念是**工作流程**，即一条*穿过*多项技能的路径，而不是单独一项技能。当你说明自己的情形时，路由器会将你放在某条工作流程的某个步骤上。这不同于"以下是与你的关键词匹配的技能"。有五类路径，技能正文会详细说明：
 
-- **主流程**：从想法到发布。深入追问、规格说明、工单、实现（一次处理一张工单，或与 [implement-spec](https://aihero.dev/skills-implement-spec) 并行处理整个任务图）、审查，然后使用 [retro](https://aihero.dev/skills-retro) 将构建过程中的经验反馈到代理运行环境中。它有两个分支，一个是原型旁支，适用于需要可运行代码才能解决的问题；另一个是规格说明与工单拆分，只适用于跨越多个会话的构建工作。
+- **主流程**：从想法到发布。深入追问、规格说明、工单、实现(一次处理一张工单，或与 [implement-spec](https://aihero.dev/skills-implement-spec) 并行处理整个任务图)、审查，然后使用 [retro](https://aihero.dev/skills-retro) 将构建过程中的经验反馈到代理运行环境中。它有两个分支，一个是原型旁支，适用于需要可运行代码才能解决的问题；另一个是规格说明与工单拆分，只适用于跨越多个会话的构建工作。
 - **工作入口**：适用于产生工作后再汇入主流程的情形：收到错误报告、出现故障，或工作规模太大、太模糊，无法在一次会话中处理。
 - **代码库维护**：关注维护，不是功能开发。[improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture) 会检查代码以寻找加深模块的机会；每个找到的机会都能作为新想法重新进入主流程。
 - **独立技能**：脱离所有流程单独使用，包括原型、问卷和研究。
@@ -34,11 +34,11 @@
 
 ## 阶段边界
 
-此技能的另一个核心概念是**阶段边界**。阶段是会话中的一段工作（[深入追问](https://www.aihero.dev/ai-coding-dictionary/grilling)、实现、质量保证），只有在两个阶段的边界处，才需要考虑“如何处理当前上下文？”阶段进行中无需作出决定：继续工作，或将剩余工作拆分给[子代理](https://www.aihero.dev/ai-coding-dictionary/subagent)。
+此技能的另一个核心概念是**阶段边界**。阶段是会话中的一段工作([深入追问](https://www.aihero.dev/ai-coding-dictionary/grilling)、实现、质量保证)，只有在两个阶段的边界处，才需要考虑"如何处理当前上下文？"阶段进行中无需作出决定：继续工作，或将剩余工作拆分给[子代理](https://www.aihero.dev/ai-coding-dictionary/subagent)。
 
 | 选择 | 适用情况 |
 | --- | --- |
-| **Continue** | 下一阶段需要逐字使用当前内容，或你仍处于[智能区（smart zone）](https://www.aihero.dev/ai-coding-dictionary/smart-zone)。这是唯一能将会话保留为[一手资料](https://www.aihero.dev/ai-coding-dictionary/primary-source)的方式，因此先判断能否 Continue（继续）；不能继续时再考虑其他方式 |
+| **Continue** | 下一阶段需要逐字使用当前内容，或你仍处于[智能区(smart zone)](https://www.aihero.dev/ai-coding-dictionary/smart-zone)。这是唯一能将会话保留为[一手资料](https://www.aihero.dev/ai-coding-dictionary/primary-source)的方式，因此先判断能否 Continue(继续)；不能继续时再考虑其他方式 |
 | **`/clear`** | 当前会话中所有内容都可以丢弃。这是成本最低的选择；如果判断错误，就无法撤销 |
 | **[handoff](https://aihero.dev/skills-handoff)** | 需要带走一些内容：切换到新的[运行环境](https://www.aihero.dev/ai-coding-dictionary/harness)、新目录、同事，或在阶段中途拆分的旁支任务 |
 | **Subagent** | 任务范围足够明确，可以让代理在你[离开键盘](https://www.aihero.dev/ai-coding-dictionary/afk)时自行完成 |
@@ -58,11 +58,11 @@
 
 **它描述了某项技能的行为，但那项技能并非如此。**
 
-这也是一个真实的问题，而且尚未修复。路由器会根据每项技能自己的一行摘要回答，而不是阅读技能正文。一份详细报告记录了同一会话中的三次情况，其中包括只根据“将讨论整理成规格说明”这行摘要就建议跳过 [to-spec](https://aihero.dev/skills-to-spec)。路由器从未打开 `to-spec/SKILL.md`。每一次都是在用户提出质疑之后才检查，并非主动检查。那次跳过 `to-spec` 导致没有检查真正的接缝，而且生成的工单少于实际所需数量。对于你即将据以行动的其他技能，要求路由器先打开相应的 `SKILL.md`。对于地图完全没有涵盖的问题，例如是否使用[计划模式](https://www.aihero.dev/ai-coding-dictionary/agent-mode)，也应采取同样做法：答案来自[模型](https://www.aihero.dev/ai-coding-dictionary/model)的推断，而不是文档中已有的内容。
+这也是一个真实的问题，而且尚未修复。路由器会根据每项技能自己的一行摘要回答，而不是阅读技能正文。一份详细报告记录了同一会话中的三次情况，其中包括只根据"将讨论整理成规格说明"这行摘要就建议跳过 [to-spec](https://aihero.dev/skills-to-spec)。路由器从未打开 `to-spec/SKILL.md`。每一次都是在用户提出质疑之后才检查，并非主动检查。那次跳过 `to-spec` 导致没有检查真正的接缝，而且生成的工单少于实际所需数量。对于你即将据以行动的其他技能，要求路由器先打开相应的 `SKILL.md`。对于地图完全没有涵盖的问题，例如是否使用[计划模式](https://www.aihero.dev/ai-coding-dictionary/agent-mode)，也应采取同样做法：答案来自[模型](https://www.aihero.dev/ai-coding-dictionary/model)的推断，而不是文档中已有的内容。
 
 **为什么使用段落，而不是编号检查清单？**
 
-这是合理的批评。有一个未关闭的问题认为，大多数路由选择都是确定性的，而叙述形式不易浏览。你可以要求它提供压缩形式：“只给我操作顺序”就会得到操作顺序。段落用于承载条件信息：不同分支、预期人作出决定的地方，以及每个步骤之间应该清空或压缩的位置。扁平检查清单正好会遗漏这些内容。
+这是合理的批评。有一个未关闭的问题认为，大多数路由选择都是确定性的，而叙述形式不易浏览。你可以要求它提供压缩形式："只给我操作顺序"就会得到操作顺序。段落用于承载条件信息：不同分支、预期人作出决定的地方，以及每个步骤之间应该清空或压缩的位置。扁平检查清单正好会遗漏这些内容。
 
 **它可以把我的技能或其他作者的技能纳入路由吗？**
 

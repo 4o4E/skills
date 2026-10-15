@@ -11,10 +11,10 @@
 
 - [书籍：《力量训练的科学与实践》，作者 Zatsiorsky 和 Kraemer](https://example.com)
   介绍训练安排和身体适应的基础文本。适用于：周期安排、恢复和强度区间相关内容。
-- [文章：“我应该训练多少？”，作者 Greg Nuckols（Stronger By Science）](https://example.com)
+- [文章："我应该训练多少？"，作者 Greg Nuckols(Stronger By Science)](https://example.com)
   基于证据回顾训练量基准。适用于：每个肌群每周训练组数的目标。
 
-## 智慧（社群）
+## 智慧(社群)
 
 - [r/weightroom](https://reddit.com/r/weightroom)
   信息质量高、会清理伪科学内容的子版块。适用于：训练计划评估、训练停滞问题排查。

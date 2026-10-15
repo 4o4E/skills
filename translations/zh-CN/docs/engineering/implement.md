@@ -2,11 +2,11 @@
 
 `implement` 根据已经决定的工作进行实现。你可以为它提供[工单](https://www.aihero.dev/ai-coding-dictionary/ticket)、[规格说明](https://www.aihero.dev/ai-coding-dictionary/spec)，或刚刚在对话中达成一致的计划；它会编写代码，在接缝处运行 [tdd](https://aihero.dev/skills-tdd)，过程中执行类型检查，最后运行 [code-review](https://aihero.dev/skills-code-review)，并提交到当前分支。
 
-它不会重新讨论计划。它不会采访你、进行澄清，也不会提出其他方案。上游已经决定的内容就是输入，此技能的全部工作就是将其变成一次提交。这与在全新[代理](https://www.aihero.dev/ai-coding-dictionary/agent)中输入“构建这个”不同；后者经常会一边构建一边重新设计工作内容。
+它不会重新讨论计划。它不会采访你、进行澄清，也不会提出其他方案。上游已经决定的内容就是输入，此技能的全部工作就是将其变成一次提交。这与在全新[代理](https://www.aihero.dev/ai-coding-dictionary/agent)中输入"构建这个"不同；后者经常会一边构建一边重新设计工作内容。
 
 ## 适用情形
 
-你需要自行输入 `/implement` 调用此技能，代理不会自行调用。此技能设置了 `disable-model-invocation: true`，因此其他技能也无法调用它。无论 [ask-matt](https://aihero.dev/skills-ask-matt) 或 [to-tickets](https://aihero.dev/skills-to-tickets) 何时说“然后对每个工单运行 `/implement`”，这都是对你的指示，不是代理会主动执行的内容。
+你需要自行输入 `/implement` 调用此技能，代理不会自行调用。此技能设置了 `disable-model-invocation: true`，因此其他技能也无法调用它。无论 [ask-matt](https://aihero.dev/skills-ask-matt) 或 [to-tickets](https://aihero.dev/skills-to-tickets) 何时说"然后对每个工单运行 `/implement`"，这都是对你的指示，不是代理会主动执行的内容。
 
 工作目前处于哪种状态，决定是否适用此技能：
 
@@ -20,7 +20,7 @@
 | 想先编写测试，实现某个具体行为，但没有规格说明 | 直接使用 [tdd](https://aihero.dev/skills-tdd) |
 | 已经完成实现，希望进行审查 | 直接使用 [code-review](https://aihero.dev/skills-code-review) |
 
-值得指出同一会话的情况，因为技能正文开头没有涵盖这种情形。`SKILL.md` 写着“规格说明或工单”，会促使[模型](https://www.aihero.dev/ai-coding-dictionary/model)寻找实际上不存在的文件。如果计划只存在当前聊天中，调用技能时要说明这一点。
+值得指出同一会话的情况，因为技能正文开头没有涵盖这种情形。`SKILL.md` 写着"规格说明或工单"，会促使[模型](https://www.aihero.dev/ai-coding-dictionary/model)寻找实际上不存在的文件。如果计划只存在当前聊天中，调用技能时要说明这一点。
 
 ## 前置条件
 
@@ -44,7 +44,7 @@
 
 此技能的核心概念是**接缝**：在不深入内部的情况下观察行为的公开边界。测试应位于接缝处。在编写代码前约定接缝，测试才能长期有效；你也可以在不修改测试的情况下重写底层实现。
 
-“事先约定”很重要，但也是此技能最薄弱的地方。`implement` 自身不会约定接缝。会要求用户约定接缝的是 `tdd`，而且它会拒绝在未经确认的接缝处编写测试。因此，实际约定要么发生在上游规格说明中，要么发生在此次运行的第一轮交流中。如果两处都没有约定，运行就会变成“直接写代码”，而没有任何警告。将接缝写入规格说明才能避免这种情况。
+"事先约定"很重要，但也是此技能最薄弱的地方。`implement` 自身不会约定接缝。会要求用户约定接缝的是 `tdd`，而且它会拒绝在未经确认的接缝处编写测试。因此，实际约定要么发生在上游规格说明中，要么发生在此次运行的第一轮交流中。如果两处都没有约定，运行就会变成"直接写代码"，而没有任何警告。将接缝写入规格说明才能避免这种情况。
 
 ## 常见问题
 
@@ -58,7 +58,7 @@
 
 **它能打开 PR 而不是提交吗？**
 
-没有内置此功能。它会直接提交到当前分支。有人认为它过于主动，因为他们还没验证代码是否有效，代码就已经提交了。目前没有配置标记，也没有 PR 模式。有人会在调用时另行说明（“提交到分支并创建 PR”），或编辑本地技能副本来覆盖此行为。代理编写 PR 时，[pr](https://aihero.dev/skills-pr) 会提供正文格式。
+没有内置此功能。它会直接提交到当前分支。有人认为它过于主动，因为他们还没验证代码是否有效，代码就已经提交了。目前没有配置标记，也没有 PR 模式。有人会在调用时另行说明("提交到分支并创建 PR")，或编辑本地技能副本来覆盖此行为。代理编写 PR 时，[pr](https://aihero.dev/skills-pr) 会提供正文格式。
 
 **`code-review` 说它看不到我的更改。**
 
