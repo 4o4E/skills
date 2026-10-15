@@ -1,4 +1,4 @@
-# 议题跟踪系统：本地 Markdown
+# issue tracker：本地 Markdown
 
 本仓库的问题和规格说明以 Markdown 文件形式存放在 `.scratch/` 中。
 
@@ -10,7 +10,7 @@
 - 分流状态记录在每个问题文件顶部附近的 `Status:` 行中(角色字符串参见 `triage-labels.md`)
 - 评论和对话历史追加到文件底部的 `## Comments` 标题下
 
-## 技能提到"发布到议题跟踪系统"时
+## 技能提到"发布到 issue tracker"时
 
 在 `.scratch/<feature-slug>/` 下创建新文件(如有需要，创建该目录)。
 

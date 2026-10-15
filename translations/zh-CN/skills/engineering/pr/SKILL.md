@@ -98,9 +98,9 @@ sequenceDiagram
  <SessionPage>
    useSessionEvents()
    <SessionToolbar>
-+    <RunSkillButton />
++ <RunSkillButton />
    <SessionTimeline>
-+    <SkillResultCard />
++ <SkillResultCard />
 ```
 
 文件布局更改示例：
@@ -128,22 +128,22 @@ flowchart TB
  submitForm
    createSession
      persistPrompt
-+    expandSkillMention
++ expandSkillMention
      launchAgent
--  navigateToSession
-+  navigateToSession
-+    subscribeToEvents
+- navigateToSession
++ navigateToSession
++ subscribeToEvents
 ```
 
 状态或控制流程更改示例：
 
 ```diff
  on(save)
--  write content
-+  if content is unchanged
-+    return cached result
-+  write new content
-+  invalidate cache
+- write content
++ if content is unchanged
++ return cached result
++ write new content
++ invalidate cache
 ```
 
 - 如果大部分内容都是新增的、省略上下文会隐藏所有权或顺序，或用户需要可复制的目标形态，则展示整个代码块：

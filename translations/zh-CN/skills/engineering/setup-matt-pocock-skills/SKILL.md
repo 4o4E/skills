@@ -1,6 +1,6 @@
 ---
 name: setup-matt-pocock-skills
-description: "为本仓库配置工程技能：设置议题跟踪系统、分流标签词汇和领域文档布局。在首次使用其他工程技能前运行一次。"
+description: "为本仓库配置工程技能：设置 issue tracker、分流标签词汇和领域文档布局。在首次使用其他工程技能前运行一次。"
 disable-model-invocation: true
 ---
 
@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 为每个仓库建立工程技能所依赖的配置：
 
-- **议题跟踪系统**：问题所在位置(默认为 GitHub；同时原生支持本地 Markdown)
+- **issue tracker**：问题所在位置(默认为 GitHub；同时原生支持本地 Markdown)
 - **分流标签**：五个规范分流角色所使用的字符串
 - **领域文档**：`GLOSSARY.md` 和 ADR 的存放位置，以及读取这些文件的使用规则
 
@@ -35,9 +35,9 @@ disable-model-invocation: true
 
 每部分都先提出建议的答案，让用户可以用一个词接受。只有选项确实带来不同分支时才用一句话说明；如果探索已经解决该部分，就完全跳过(没有安装 `triage` 时跳过 B 部分；没有单体仓库时跳过 C 部分)。
 
-**A 部分：议题跟踪系统。**
+**A 部分：issue tracker。**
 
-> 说明：此处的"议题跟踪系统"是指本仓库中问题的存放位置。诸如 `to-tickets`、`triage` 和 `to-spec` 之类的技能需要从中读取和写入内容。它们需要知道应该运行 `gh issue create`、在 `.scratch/` 下编写 Markdown 文件，还是按照你描述的其他工作流程操作。选择你实际用来跟踪本仓库工作的地方。
+> 说明：此处的"issue tracker"是指本仓库中问题的存放位置。诸如 `to-tickets`、`triage` 和 `to-spec` 之类的技能需要从中读取和写入内容。它们需要知道应该运行 `gh issue create`、在 `.scratch/` 下编写 Markdown 文件，还是按照你描述的其他工作流程操作。选择你实际用来跟踪本仓库工作的地方。
 
 默认建议：这些技能是为 GitHub 设计的。如果 `git remote` 指向 GitHub，就建议使用它。如果 `git remote` 指向 GitLab(`gitlab.com` 或自托管主机)，就建议使用 GitLab。否则(或者用户有其他偏好)，可以选择：
 
@@ -54,7 +54,7 @@ disable-model-invocation: true
 
 > 你是否要保留默认分流标签？(建议：**是**)
 
-默认标签是五个规范角色，且各标签字符串与角色名称相同：`needs-triage`、`needs-info`、`ready-for-agent`、`ready-for-human`、`wontfix`。回答**是**时，原样写入。只有用户回答否时(通常因为其议题跟踪系统已经使用其他名称，例如用 `bug:triage` 表示 `needs-triage`)，才收集替代标签，让 `triage` 使用现有标签，而不是创建重复标签。
+默认标签是五个规范角色，且各标签字符串与角色名称相同：`needs-triage`、`needs-info`、`ready-for-agent`、`ready-for-human`、`wontfix`。回答**是**时，原样写入。只有用户回答否时(通常因为其 issue tracker 已经使用其他名称，例如用 `bug:triage` 表示 `needs-triage`)，才收集替代标签，让 `triage` 使用现有标签，而不是创建重复标签。
 
 **C 部分：领域文档。**默认使用**单一上下文**(在仓库根目录放置一个 `GLOSSARY.md` 和一个 `docs/adr/`)。这适用于几乎所有仓库；直接写入，无需询问。
 
@@ -101,18 +101,18 @@ disable-model-invocation: true
 
 只有在安装了 `triage` 且已执行 B 部分时，才要包含 `### Triage labels` 子区块，并写入 `docs/agents/triage-labels.md`。未满足条件时，两者都省略。
 
-在 GitHub 或 GitLab 上执行 B 部分时，为议题跟踪系统缺少的每个已配置标签创建标签(`gh label create` / `glab label create`)。
+在 GitHub 或 GitLab 上执行 B 部分时，为 issue tracker 缺少的每个已配置标签创建标签(`gh label create` / `glab label create`)。
 
 然后，以此技能目录中的模板为基础编写文档文件：
 
-- [issue-tracker-github.md](./issue-tracker-github.md)：GitHub 议题跟踪系统
-- [issue-tracker-gitlab.md](./issue-tracker-gitlab.md)：GitLab 议题跟踪系统
-- [issue-tracker-local.md](./issue-tracker-local.md)：本地 Markdown 议题跟踪系统
+- [issue-tracker-github.md](./issue-tracker-github.md)：GitHub issue tracker
+- [issue-tracker-gitlab.md](./issue-tracker-gitlab.md)：GitLab issue tracker
+- [issue-tracker-local.md](./issue-tracker-local.md)：本地 Markdown issue tracker
 - [triage-labels.md](./triage-labels.md)：标签映射(仅在安装了 `triage` 时使用)
 - [domain.md](./domain.md)：领域文档使用规则和布局
 
-对于"其他"议题跟踪系统，依据用户的描述从头编写 `docs/agents/issue-tracker.md`。
+对于"其他"issue tracker，依据用户的描述从头编写 `docs/agents/issue-tracker.md`。
 
 ### 5. 完成
 
-告知用户设置已完成，并说明哪些工程技能现在会读取这些文件。提及用户之后可以直接编辑 `docs/agents/*.md`；只有在他们要切换议题跟踪系统或从头重新配置时，才需要重新运行此技能。
+告知用户设置已完成，并说明哪些工程技能现在会读取这些文件。提及用户之后可以直接编辑 `docs/agents/*.md`；只有在他们要切换 issue tracker 或从头重新配置时，才需要重新运行此技能。

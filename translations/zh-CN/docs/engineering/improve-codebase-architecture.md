@@ -87,7 +87,7 @@
 
 **它适用于 Codex 或其他运行环境吗？**
 
-部分适用。探索步骤直接指定 Claude Code 的 `Agent` 工具和 `subagent_type=Explore`。没有该工具的[运行环境](https://www.aihero.dev/ai-coding-dictionary/harness)可能会跳过并行探索，而不是使用等效工具。技能仍会运行，但扫描就不那么彻底。有人提议改写成与运行环境无关的版本，但尚未合并。
+部分适用。探索步骤直接指定 Claude Code 的 `Agent` 工具和 `subagent_type=Explore`。没有该工具的[harness](https://www.aihero.dev/ai-coding-dictionary/harness)可能会跳过并行探索，而不是使用等效工具。技能仍会运行，但扫描就不那么彻底。有人提议改写成与运行环境无关的版本，但尚未合并。
 
 **我怎样才能在 TypeScript 中实际实现深层模块？**
 

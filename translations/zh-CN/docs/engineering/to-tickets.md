@@ -1,6 +1,6 @@
 ## 它的作用
 
-`to-tickets` 会将计划、[规格说明](https://www.aihero.dev/ai-coding-dictionary/spec)或当前对话拆分为一组发布到议题跟踪系统上的**[工单](https://www.aihero.dev/ai-coding-dictionary/ticket)**。每张工单都声明自己的**阻塞关系**：哪些其他工单必须先完成，它才能开始。
+`to-tickets` 会将计划、[规格说明](https://www.aihero.dev/ai-coding-dictionary/spec)或当前对话拆分为一组发布到 issue tracker 上的**[工单](https://www.aihero.dev/ai-coding-dictionary/ticket)**。每张工单都声明自己的**阻塞关系**：哪些其他工单必须先完成，它才能开始。
 
 每张工单都是一颗**曳光弹(tracer bullet)**：一条贯穿改动所有层(数据结构定义(schema)、API、界面、测试)的狭窄但完整的路径；它一旦交付就可以独立演示。这就是此技能与直观拆分工作的方式之间的区别：后者每次只处理一层，最后再集成。它也会确保每张工单的规模适合一个全新的[上下文窗口](https://www.aihero.dev/ai-coding-dictionary/context-window)，这样从未见过规格说明的[会话](https://www.aihero.dev/ai-coding-dictionary/session)也能领取工单。
 
@@ -20,7 +20,7 @@
 
 ## 前置条件
 
-`to-tickets` 会将工单发布到议题跟踪系统，因此 [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) 必须已为本仓库配置议题跟踪系统及分流标签词汇。真实议题跟踪系统(如 GitHub 或 Linear)和 `.scratch/` 下的本地 Markdown 文件都可以使用，后者无需额外设置。
+`to-tickets` 会将工单发布到 issue tracker，因此 [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) 必须已为本仓库配置 issue tracker 及分流标签词汇。真实 issue tracker(如 GitHub 或 Linear)和 `.scratch/` 下的本地 Markdown 文件都可以使用，后者无需额外设置。
 
 ## 使用曳光弹，不要按层拆分
 
@@ -28,18 +28,18 @@
 
 这是人们最常违反的规则。有一个团队将工作按层拆分成 26 张工单(语料库、生产者、聚合器、选择器)，每关闭一张工单大约运行 20 次代理会话，其中约四分之三都需要返工。他们在事后分析中发现，每一类失败都源自横向切片，而不是具体实现。
 
-发布前有两项工作。`to-tickets` 会先寻找预先重构的机会(原则是"先让改动变简单，再完成简单的改动")，并把这项工作安排在前面。然后它会用编号列表展示拆分结果，并询问你：粒度是否适当，阻塞关系是否真实，是否应该合并或拆分工单。未经你批准，不会有任何内容进入议题跟踪系统；此时你可以提出修改意见。
+发布前有两项工作。`to-tickets` 会先寻找预先重构的机会(原则是"先让改动变简单，再完成简单的改动")，并把这项工作安排在前面。然后它会用编号列表展示拆分结果，并询问你：粒度是否适当，阻塞关系是否真实，是否应该合并或拆分工单。未经你批准，不会有任何内容进入 issue tracker；此时你可以提出修改意见。
 
 ## 阻塞关系
 
-工单的核心价值就是阻塞关系。它们根据议题跟踪系统有两种表达方式：
+工单的核心价值就是阻塞关系。它们根据 issue tracker 有两种表达方式：
 
-| 议题跟踪系统 | 阻塞关系的存放位置 | 处理方式 |
+| issue tracker | 阻塞关系的存放位置 | 处理方式 |
 | --- | --- | --- |
 | 本地 Markdown | `.scratch/<feature>/issues/<NN>-<slug>.md` 下每张工单的独立文件中，先编号阻塞项，再编号被阻塞的工单 | 手动从上到下处理 |
-| 真实议题跟踪系统(GitHub、Linear) | 原生阻塞链接；如果议题跟踪系统支持，也可以使用子问题 | 阻塞项都已完成的工单位于**前沿**，可以领取 |
+| 真实 issue tracker(GitHub、Linear) | 原生阻塞链接；如果 issue tracker 支持，也可以使用子问题 | 阻塞项都已完成的工单位于**前沿**，可以领取 |
 
-无论采用哪种方式，阻塞关系都属于工单本身。议题跟踪系统只决定能否并行使用它们。`to-tickets` 负责生成工单；逐张处理(一次处理一个，或并行调度一组代理)是你的工作，不属于该技能。
+无论采用哪种方式，阻塞关系都属于工单本身。issue tracker 只决定能否并行使用它们。`to-tickets` 负责生成工单；逐张处理(一次处理一个，或并行调度一组代理)是你的工作，不属于该技能。
 
 ## 大范围重构的例外
 
@@ -62,16 +62,16 @@
 这是制定纵向切片规则要避免的情况，但技能有时仍会这样做。在询问环节逐张提出这个问题："完成后我可以演示什么？"没有明确答案的工单就是横向切片。有人因此在每张工单上添加"演示路径"一行，并报告这能让模型倾向于采用纵向切片。
 
 **在 GitHub 上，工单没有成为规格说明 issue 的子问题。**
-这个问题在十几次运行和多个模型中都有人报告，[问题 #554 中的描述最完整](https://github.com/mattpocock/skills/issues/554)。现已修复：`to-tickets` 会将每张工单设为其来源 issue 的子问题，GitHub 议题跟踪系统模板也提供了命令(`gh issue create --parent <n>`，要求 `gh` 2.94+)。重新运行 [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills)，以更新较旧的 `docs/agents/issue-tracker.md`。
+这个问题在十几次运行和多个模型中都有人报告，[问题 #554 中的描述最完整](https://github.com/mattpocock/skills/issues/554)。现已修复：`to-tickets` 会将每张工单设为其来源 issue 的子问题，GitHub issue tracker 模板也提供了命令(`gh issue create --parent <n>`，要求 `gh` 2.94+)。重新运行 [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills)，以更新较旧的 `docs/agents/issue-tracker.md`。
 
 **"Blocked by"被写入 issue 正文，而不是实际的阻塞链接。**
-这是类似的问题，[曾在问题 #513 中报告](https://github.com/mattpocock/skills/issues/513)，当时代理甚至声称 GitHub 完全不支持原生阻塞关系。实际上支持：`gh issue create --blocked-by 12,15`。技能会先发布阻塞项，因此创建工单时总能拿到它们的编号。正文内容是为不支持原生关系的议题跟踪系统提供的后备方式，不是默认方式。现在原生设置了阻塞关系时，工单模板会省略 `## Blocked by`。
+这是类似的问题，[曾在问题 #513 中报告](https://github.com/mattpocock/skills/issues/513)，当时代理甚至声称 GitHub 完全不支持原生阻塞关系。实际上支持：`gh issue create --blocked-by 12,15`。技能会先发布阻塞项，因此创建工单时总能拿到它们的编号。正文内容是为不支持原生关系的 issue tracker 提供的后备方式，不是默认方式。现在原生设置了阻塞关系时，工单模板会省略 `## Blocked by`。
 
 **本地工单保存在哪里？v1.1 的说明提到根目录的 `tickets.md`。**
-确实提到了，那是错误。多个并行代理共同编辑一个文件也会造成竞争条件。本地模式现在会按依赖顺序，在 `.scratch/<feature-slug>/issues/<NN>-<slug>.md` 下为每张工单写入一个文件，符合本地议题跟踪系统模板已经说明的布局。`NN` 前缀是实际工单编号，因此可以运行 `/implement 03`，不必重新输入长标题。
+确实提到了，那是错误。多个并行代理共同编辑一个文件也会造成竞争条件。本地模式现在会按依赖顺序，在 `.scratch/<feature-slug>/issues/<NN>-<slug>.md` 下为每张工单写入一个文件，符合本地 issue tracker 模板已经说明的布局。`NN` 前缀是实际工单编号，因此可以运行 `/implement 03`，不必重新输入长标题。
 
 **它读取规格说明时不断截断。**
-非常大的规格说明可能超出议题跟踪系统 issue 可完整返回的容量。没有本地副本可以回退，因此代理会花费[工具调用](https://www.aihero.dev/ai-coding-dictionary/tool-call)反复获取内容片段，却始终读不到结尾。不要在 `/to-spec` 和 `/to-tickets` 之间[清空](https://www.aihero.dev/ai-coding-dictionary/clearing)或[压缩](https://www.aihero.dev/ai-coding-dictionary/compaction)上下文。在同一个上下文窗口中运行两者，代理就不需要重新获取规格说明。
+非常大的规格说明可能超出 issue tracker issue 可完整返回的容量。没有本地副本可以回退，因此代理会花费[工具调用](https://www.aihero.dev/ai-coding-dictionary/tool-call)反复获取内容片段，却始终读不到结尾。不要在 `/to-spec` 和 `/to-tickets` 之间[清空](https://www.aihero.dev/ai-coding-dictionary/clearing)或[压缩](https://www.aihero.dev/ai-coding-dictionary/compaction)上下文。在同一个上下文窗口中运行两者，代理就不需要重新获取规格说明。
 
 **验收标准无法衡量任何内容：有些标准在开始工作前就已经通过。**
 模板要求列出标准，却没有规定标准必须能够失败，因此会出现这种情况。常见的有三种：基准提交时标准就已满足；只有另一张工单的工作才能满足标准；或标准只是复述请求，而不是从产物推导出来的内容。纵向切片能够避免大多数情况，因为交付新行为的切片在基准提交时必然不通过。仍然值得手动检查：针对每项标准，指出什么现象可以证明它不成立，并确认它在实现人员开始工作的提交上确实失败。

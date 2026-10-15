@@ -50,11 +50,11 @@
 
 **它结束了，但我的工单仍处于未关闭状态，验收标准也未勾选。**
 
-这是预期行为。`implement` 没有完成收尾步骤。它在提交时结束，不会处理工作项。无论使用 GitHub Issues 还是本地 Markdown 跟踪系统，情况都相同，因此不是跟踪系统集成问题。它也不会处理 `code-review` 提出的发现，不会勾选发起议题中的 `- [ ]` 项。你要自行关闭工单并核对验收标准。这在依赖链中尤其重要，因为 `to-tickets` 会将所有阻塞项均已关闭的工单定义为前沿工单。如果没有任何工单关闭，就不会有任何工单被明显解除阻塞。
+这是预期行为。`implement` 没有完成收尾步骤。它在提交时结束，不会处理工作项。无论使用 GitHub Issues 还是本地 Markdown issue tracker，情况都相同，因此不是跟踪系统集成问题。它也不会处理 `code-review` 提出的发现，不会勾选发起 issue 中的 `- [ ]` 项。你要自行关闭工单并核对验收标准。这在依赖链中尤其重要，因为 `to-tickets` 会将所有阻塞项均已关闭的工单定义为前沿工单。如果没有任何工单关闭，就不会有任何工单被明显解除阻塞。
 
 **可以一次交给它所有工单，或让它并行运行多个工单吗？**
 
-不能使用 `/implement` 这样做：一次调用只处理一个工单。要在一次运行中完成整份规格说明，请使用 [implement-spec](https://aihero.dev/skills-implement-spec)；它会将就绪前沿上的每个工单交给各自在独立 worktree 中运行的[子代理](https://www.aihero.dev/ai-coding-dictionary/subagent)，然后将结果合并到一个集成分支。在同一个检出目录中同时运行多个 `/implement` 会话，不只是没有支持那么简单，实际风险更大。一份实地报告描述了一个下午处理三个议题时，同一会话的 `git commit --amend` 修改了另一个会话的提交，暂存内容从 `refs/stash` 消失，提交还落到了错误分支。各会话共用一个工作目录、一个索引和一个 HEAD。用户使用 git worktree 作为替代办法，但 worktree 之间仍共用 `refs/stash`，所以单靠 worktree 不能解决暂存内容问题。
+不能使用 `/implement` 这样做：一次调用只处理一个工单。要在一次运行中完成整份规格说明，请使用 [implement-spec](https://aihero.dev/skills-implement-spec)；它会将就绪前沿上的每个工单交给各自在独立 worktree 中运行的[子代理](https://www.aihero.dev/ai-coding-dictionary/subagent)，然后将结果合并到一个集成分支。在同一个检出目录中同时运行多个 `/implement` 会话，不只是没有支持那么简单，实际风险更大。一份实地报告描述了一个下午处理三个 issue 时，同一会话的 `git commit --amend` 修改了另一个会话的提交，暂存内容从 `refs/stash` 消失，提交还落到了错误分支。各会话共用一个工作目录、一个索引和一个 HEAD。用户使用 git worktree 作为替代办法，但 worktree 之间仍共用 `refs/stash`，所以单靠 worktree 不能解决暂存内容问题。
 
 **它能打开 PR 而不是提交吗？**
 
@@ -66,13 +66,13 @@
 
 另外，有人不希望在一次运行内部审查，因为代理审查自己刚刚写出的代码时会偏向自己的方案。另一种可行方式是在新会话中，针对固定参照点运行 [code-review](https://aihero.dev/skills-code-review)。该技能也将两个审查方面分配给不同子代理，原因同样是避免偏见。
 
-**一个工单花了 150k 个词元。我用错了吗？**
+**一个工单花了 150k 个 token。我用错了吗？**
 
-可能没有。工单更可能是太大了。一次运行要探索代码库、针对每个接缝执行红绿循环、运行完整测试套件并进行审查，因此复杂工单超过 100k 个[词元](https://www.aihero.dev/ai-coding-dictionary/token)很常见，并不代表系统出错。应在上游解决：在 [to-tickets](https://aihero.dev/skills-to-tickets) 中合理控制工单规模，让每个工单适合一个新的上下文窗口。如果单个工单持续超出此规模，就拆分工单，而不是提高[推理力度](https://www.aihero.dev/ai-coding-dictionary/effort)等级。
+可能没有。工单更可能是太大了。一次运行要探索代码库、针对每个接缝执行红绿循环、运行完整测试套件并进行审查，因此复杂工单超过 100k 个[token](https://www.aihero.dev/ai-coding-dictionary/token)很常见，并不代表系统出错。应在上游解决：在 [to-tickets](https://aihero.dev/skills-to-tickets) 中合理控制工单规模，让每个工单适合一个新的上下文窗口。如果单个工单持续超出此规模，就拆分工单，而不是提高[推理力度](https://www.aihero.dev/ai-coding-dictionary/effort)等级。
 
 **在新会话中运行 `/implement #2`，结果却处理了完全无关的内容。**
 
-代理可能将 `#2` 解释为上下文中的其他编号列表，例如待办文件或检查清单，而不是已配置的跟踪系统。`implement` 现在会从议题跟踪系统获取传入的引用，并在开始前说明工单标题；引用不明确时会询问。确认标题与目标工单相符。传入议题 URL 或 `owner/repo#2` 就能消除歧义。
+代理可能将 `#2` 解释为上下文中的其他编号列表，例如待办文件或检查清单，而不是已配置的跟踪系统。`implement` 现在会从 issue tracker 获取传入的引用，并在开始前说明工单标题；引用不明确时会询问。确认标题与目标工单相符。传入 issue URL 或 `owner/repo#2` 就能消除歧义。
 
 ## 判断是否有效
 

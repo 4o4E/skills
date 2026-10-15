@@ -20,7 +20,7 @@
 
 ## 融入现有用语
 
-技能正文会复用全局 `CLAUDE.md` 和项目 `GLOSSARY.md` 中已有的引导词。ASD-STE100 简化技术英语决定语言风格；通用词汇提供名词。技能、`CLAUDE.md` 和 `GLOSSARY.md` 使用相同的[词元](https://www.aihero.dev/ai-coding-dictionary/token)，因此调用此技能不是新增一项指令，而是提醒代理遵守它已经接受的指令。
+技能正文会复用全局 `CLAUDE.md` 和项目 `GLOSSARY.md` 中已有的引导词。ASD-STE100 简化技术英语决定语言风格；通用词汇提供名词。技能、`CLAUDE.md` 和 `GLOSSARY.md` 使用相同的[token](https://www.aihero.dev/ai-coding-dictionary/token)，因此调用此技能不是新增一项指令，而是提醒代理遵守它已经接受的指令。
 
 如果没有 `GLOSSARY.md`(也没有 `GLOSSARY-MAP.md` 指明当前情境应使用哪份词汇表)，此技能仍然有效。你只会失去关于领域词汇的那一部分功能。
 

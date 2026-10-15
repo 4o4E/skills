@@ -49,11 +49,11 @@
 
 **我在 TypeScript 中究竟应该如何构建深层模块？**
 
-这是关于此技能最常见的问题，但技能并没有回答。它定义了深层模块*是什么*，没有说明如何阻止其他代码绕过接口导入内部内容。[议题 #458](https://github.com/mattpocock/skills/issues/458) 表达得很清楚："假设我们对接口满意，它隐藏了细节等。但我们如何强制执行？我认为没有代码检查或明确护栏，人类和大型语言模型最终都会把代码弄乱。"该讨论给出了三种选择：将它封装进类或 IIFE，并接受类会变得很大；在单体仓库中将它做成程序包，并接受需要使用单体仓库工具；或使用 [dependency-cruiser](https://github.com/sverweij/dependency-cruiser) 之类的代码检查器，禁止绕过接口导入内容。在这些机制中，Effect 最好，dependency-cruiser 次之。仓库 `in-progress/` 类别中有一个 `setup-ts-deep-modules` 技能，它规定了 `src/packages/<name>/index.ts` 惯例，但这是一个测试阶段的技能，没有文档页面，也没有提供代码检查规则。
+这是关于此技能最常见的问题，但技能并没有回答。它定义了深层模块*是什么*，没有说明如何阻止其他代码绕过接口导入内部内容。[issue #458](https://github.com/mattpocock/skills/issues/458) 表达得很清楚："假设我们对接口满意，它隐藏了细节等。但我们如何强制执行？我认为没有代码检查或明确护栏，人类和大型语言模型最终都会把代码弄乱。"该讨论给出了三种选择：将它封装进类或 IIFE，并接受类会变得很大；在单体仓库中将它做成程序包，并接受需要使用单体仓库工具；或使用 [dependency-cruiser](https://github.com/sverweij/dependency-cruiser) 之类的 linter，禁止绕过接口导入内容。在这些机制中，Effect 最好，dependency-cruiser 次之。仓库 `in-progress/` 类别中有一个 `setup-ts-deep-modules` 技能，它规定了 `src/packages/<name>/index.ts` 惯例，但这是一个测试阶段的技能，没有文档页面，也没有提供代码检查规则。
 
-**我让会话运行它，结果花费 100k 个[词元](https://www.aihero.dev/ai-coding-dictionary/token)重新设计我从未要求过的内容。**
+**我让会话运行它，结果花费 100k 个[token](https://www.aihero.dev/ai-coding-dictionary/token)重新设计我从未要求过的内容。**
 
-这是已知问题，已记录为[议题 #449](https://github.com/mattpocock/skills/issues/449)。此技能由模型调用，并说明自己只提供词汇，但没有内容能明确阻止代理把它当成可执行流程。有人要求"在 `/codebase-design` 中恢复，并推动未决决定"，代理便选择了最接近流程的部分：`DESIGN-IT-TWICE.md` 中的并行子代理。它重新探索了前一个会话已经梳理过的代码，并且工作了很久才提出问题。由于它是参考资料，此技能没有驱动型技能具有的护栏(检查点、一次一个问题、不得自动推进)。解决办法是调用驱动型技能(`/grill-with-docs`、`/improve-codebase-architecture` 或 `/tdd`)，并将 `codebase-design` 作为词汇参考。该议题仍未解决。
+这是已知问题，已记录为[issue #449](https://github.com/mattpocock/skills/issues/449)。此技能由模型调用，并说明自己只提供词汇，但没有内容能明确阻止代理把它当成可执行流程。有人要求"在 `/codebase-design` 中恢复，并推动未决决定"，代理便选择了最接近流程的部分：`DESIGN-IT-TWICE.md` 中的并行子代理。它重新探索了前一个会话已经梳理过的代码，并且工作了很久才提出问题。由于它是参考资料，此技能没有驱动型技能具有的护栏(检查点、一次一个问题、不得自动推进)。解决办法是调用驱动型技能(`/grill-with-docs`、`/improve-codebase-architecture` 或 `/tdd`)，并将 `codebase-design` 作为词汇参考。该 issue 仍未解决。
 
 **`design-an-interface` 去哪里了？有 `/interface-design` 技能吗？**
 
@@ -61,7 +61,7 @@
 
 **这难道不是文件结构惯例，例如文件夹、barrel 文件、功能切片吗？**
 
-不是。人们多次提出异议，但技能一直没有改变。[议题 #95](https://github.com/mattpocock/skills/issues/95) 提议将形式化的分形树文件结构作为深层模块的具体实现；回应指出两者彼此独立："深层模块关注接口设计，以及通过严格接口访问，不管文件系统是什么样子。完全可以采用这种方式，但仍然设计出浅层模块。"#458 也出现了类似讨论："我认为你可能把模块概念和文件系统绑得太紧了。文件系统确实可以提示模块形态，但构建深层模块并不需要使用文件系统。"词汇表有意将**模块**定义为不限定规模的概念。
+不是。人们多次提出异议，但技能一直没有改变。[issue #95](https://github.com/mattpocock/skills/issues/95) 提议将形式化的分形树文件结构作为深层模块的具体实现；回应指出两者彼此独立："深层模块关注接口设计，以及通过严格接口访问，不管文件系统是什么样子。完全可以采用这种方式，但仍然设计出浅层模块。"#458 也出现了类似讨论："我认为你可能把模块概念和文件系统绑得太紧了。文件系统确实可以提示模块形态，但构建深层模块并不需要使用文件系统。"词汇表有意将**模块**定义为不限定规模的概念。
 
 **`tdd` 真的会使用这些词汇吗？**
 
@@ -69,11 +69,11 @@
 
 **双重设计模式能在 Claude Code 之外使用吗？**
 
-不能顺利使用。`DESIGN-IT-TWICE.md` 说"使用 Agent 工具并行启动 3 个或更多子代理"，而"Agent"是 Claude Code [工具](https://www.aihero.dev/ai-coding-dictionary/tool)的名称。仓库提供了适用于 Codex 等其他[运行环境](https://www.aihero.dev/ai-coding-dictionary/harness)的元数据，但这些环境可能没有同名工具。因此，并行设计阶段的可移植性不如技能元数据所暗示的那样高。[议题 #564](https://github.com/mattpocock/skills/issues/564) 正在跟踪此问题，目前尚未解决。
+不能顺利使用。`DESIGN-IT-TWICE.md` 说"使用 Agent 工具并行启动 3 个或更多子代理"，而"Agent"是 Claude Code [工具](https://www.aihero.dev/ai-coding-dictionary/tool)的名称。仓库提供了适用于 Codex 等其他[harness](https://www.aihero.dev/ai-coding-dictionary/harness)的元数据，但这些环境可能没有同名工具。因此，并行设计阶段的可移植性不如技能元数据所暗示的那样高。[issue #564](https://github.com/mattpocock/skills/issues/564) 正在跟踪此问题，目前尚未解决。
 
 **我可以在词汇表中添加自己的概念吗，例如共现性、模块秘密、[渐进式披露](https://www.aihero.dev/ai-coding-dictionary/progressive-disclosure)？**
 
-有人提出过这些想法。[议题 #180](https://github.com/mattpocock/skills/issues/180) 附有可运行的差异，提议使用 Parnas 的模块秘密和 Page-Jones 的共现性，命名跨接缝泄漏的**内容**；[议题 #303](https://github.com/mattpocock/skills/issues/303) 提议在实现内部使用渐进式披露，让公开接口深层的模块内部也具有结构。这两项都尚未合并。发布版词汇表刻意保持精简，技能也说明了原因：保持语言一致是全部目的，而无人能够一致使用的术语还不如没有术语。
+有人提出过这些想法。[issue #180](https://github.com/mattpocock/skills/issues/180) 附有可运行的差异，提议使用 Parnas 的模块秘密和 Page-Jones 的共现性，命名跨接缝泄漏的**内容**；[issue #303](https://github.com/mattpocock/skills/issues/303) 提议在实现内部使用渐进式披露，让公开接口深层的模块内部也具有结构。这两项都尚未合并。发布版词汇表刻意保持精简，技能也说明了原因：保持语言一致是全部目的，而无人能够一致使用的术语还不如没有术语。
 
 ## 判断是否有效
 

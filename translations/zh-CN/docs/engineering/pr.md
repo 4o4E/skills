@@ -1,6 +1,6 @@
 ## 功能说明
 
-`pr` 规定拉取请求正文的形式：用**摘要**展示更改，用**证据**说明它有效，并通过**合并风险**说明合并风险。它是格式参考，不是工作流程。它不会推送分支、打开 PR，也不会决定 PR 应包含什么内容。它会在[代理](https://www.aihero.dev/ai-coding-dictionary/agent)编写正文时告诉它正文应当是什么样子。
+`pr` 规定 PR 正文的形式：用**摘要**展示更改，用**证据**说明它有效，并通过**合并风险**说明合并风险。它是格式参考，不是工作流程。它不会推送分支、打开 PR，也不会决定 PR 应包含什么内容。它会在[代理](https://www.aihero.dev/ai-coding-dictionary/agent)编写正文时告诉它正文应当是什么样子。
 
 摘要应使用图示，而不是段落。常见 PR 正文会用文字叙述差异。此技能选择能清楚表达要点的**最精简视图**(伪代码、调用树、组件树、文件树、Mermaid 图或有结构的差异)，并保持周边文字简短。审查者已经打开了差异，因此正文应先让他们看到结构，再阅读差异。
 
@@ -32,7 +32,7 @@
 
 **它会为我打开 PR 吗？**
 
-不会。`pr` 只负责正文。[implement](https://aihero.dev/skills-implement) 最后会提交到当前分支。创建能打开 PR 的技能或选项(例如 `/to-pr`，或让 `implement` 打开 PR 而不是提交)的提议仍未定案。一位用户的解决方法是在本地覆盖 `implement` 技能，用一句话指示它打开 PR。[implement-spec](https://aihero.dev/skills-implement-spec) 是例外：如果议题跟踪系统通过 PR 关闭工作，或你提出要求，它会打开草稿 PR。由于 `pr` 可由模型调用，代理在你要求打开 PR 时会使用这种正文格式。
+不会。`pr` 只负责正文。[implement](https://aihero.dev/skills-implement) 最后会提交到当前分支。创建能打开 PR 的技能或选项(例如 `/to-pr`，或让 `implement` 打开 PR 而不是提交)的提议仍未定案。一位用户的解决方法是在本地覆盖 `implement` 技能，用一句话指示它打开 PR。[implement-spec](https://aihero.dev/skills-implement-spec) 是例外：如果 issue tracker 通过 PR 关闭工作，或你提出要求，它会打开草稿 PR。由于 `pr` 可由模型调用，代理在你要求打开 PR 时会使用这种正文格式。
 
 **它是不是会生成另一大堆文字和图示？**
 
@@ -60,7 +60,7 @@
 
 **可以标记正文由大型语言模型撰写吗？**
 
-此技能本身不会这样做。一位用户采用的做法是在仓库代理文档中长期规定，代理撰写的每个议题、评论和 PR 都以披露说明结尾。这条规则应放在仓库中，涵盖代理发布的所有内容，而不是放在某一类文档的模板中。
+此技能本身不会这样做。一位用户采用的做法是在仓库代理文档中长期规定，代理撰写的每个 issue、评论和 PR 都以披露说明结尾。这条规则应放在仓库中，涵盖代理发布的所有内容，而不是放在某一类文档的模板中。
 
 ## 判断是否有效
 
@@ -71,7 +71,7 @@
 
 ## 它在工作流程中的位置
 
-如果构建工作通过拉取请求发布，`pr` 位于审查与回顾之间：`to-spec → to-tickets → implement → code-review → pr → retro`。它可以由模型调用，因此代理在该流程之外编写 PR 正文时也会自动触发。
+如果构建工作通过 PR 发布，`pr` 位于审查与回顾之间：`to-spec → to-tickets → implement → code-review → pr → retro`。它可以由模型调用，因此代理在该流程之外编写 PR 正文时也会自动触发。
 
 - [code-review](https://aihero.dev/skills-code-review) 在它之前运行，因为 PR 正文应说明已经审查过的差异。
 - [implement](https://aihero.dev/skills-implement) 生成正文所描述的提交。

@@ -1,6 +1,6 @@
 ## 它的作用
 
-`to-spec` 会将刚才的对话整理成一份**[规格说明](https://www.aihero.dev/ai-coding-dictionary/spec)**，并以单个 issue 发布到议题跟踪系统。
+`to-spec` 会将刚才的对话整理成一份**[规格说明](https://www.aihero.dev/ai-coding-dictionary/spec)**，并以单个 issue 发布到 issue tracker。
 
 它不会访谈你。使用它时，决定已经作出。因此它会综合已知内容(来自对话、代码库、`GLOSSARY.md` 和 ADR)，而不会开始新一轮提问。规格说明记录你已经作出的决定，不用于作出新的决定。
 
@@ -19,7 +19,7 @@
 
 ## 前置条件
 
-`to-spec` 会将规格说明发布为 issue，因此 [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) 必须先为本仓库配置议题跟踪系统和分流标签词汇。任一种议题跟踪系统都可以：例如 GitHub 这样的真实议题跟踪系统，或无需额外设置即可使用的 `.scratch/` 下本地 Markdown 文件。
+`to-spec` 会将规格说明发布为 issue，因此 [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) 必须先为本仓库配置 issue tracker 和分流标签词汇。任一种 issue tracker 都可以：例如 GitHub 这样的真实 issue tracker，或无需额外设置即可使用的 `.scratch/` 下本地 Markdown 文件。
 
 ## 规格说明用于记录决定
 
@@ -56,11 +56,11 @@
 **我的工作是重构或模块边界改动，而不是功能。模板适用吗？**
 适用性较差，这是已知限制。模板非常依赖用户故事，而用户故事不适合架构工作。你最后会围绕无人提出的问题编写用户故事，而实际决定涉及接口和不变量。改用"实现决策"和"测试决策"章节。持久架构决策应通过 [grill-with-docs](https://aihero.dev/skills-grill-with-docs) 记录为 ADR，而不是写入规格说明。
 
-**它会检查议题跟踪系统中是否有相关工作，或者引用它遵守的 ADR 吗？**
-两者都不会。它会读取并遵守所涉及区域的 ADR，但不会链接到它们。写入前它也不会搜索议题跟踪系统中是否存在重叠的问题，因此规格说明可能重复他人已经提交的工作，也没有任何提示。如果该领域工作繁忙，应先自行搜索议题跟踪系统。
+**它会检查 issue tracker 中是否有相关工作，或者引用它遵守的 ADR 吗？**
+两者都不会。它会读取并遵守所涉及区域的 ADR，但不会链接到它们。写入前它也不会搜索 issue tracker 中是否存在重叠的问题，因此规格说明可能重复他人已经提交的工作，也没有任何提示。如果该领域工作繁忙，应先自行搜索 issue tracker。
 
 **`/to-tickets` 读取规格说明时不断截断，无法读取完整内容。**
-议题跟踪系统 issue 可能无法完整返回超大型规格说明，也没有本地副本可替代。要解决此问题，不要在 `/to-spec` 和 `/to-tickets` 之间[清空](https://www.aihero.dev/ai-coding-dictionary/clearing)或[压缩](https://www.aihero.dev/ai-coding-dictionary/compaction)上下文。在同一个窗口中运行两者，`/to-tickets` 就不必重新获取规格说明。
+issue tracker issue 可能无法完整返回超大型规格说明，也没有本地副本可替代。要解决此问题，不要在 `/to-spec` 和 `/to-tickets` 之间[清空](https://www.aihero.dev/ai-coding-dictionary/clearing)或[压缩](https://www.aihero.dev/ai-coding-dictionary/compaction)上下文。在同一个窗口中运行两者，`/to-tickets` 就不必重新获取规格说明。
 
 ## 使用效果良好时
 

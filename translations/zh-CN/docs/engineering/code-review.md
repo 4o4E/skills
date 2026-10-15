@@ -1,6 +1,6 @@
 ## 功能说明
 
-`code-review` 从两个方面审查你指定的固定参照点(提交、分支、标签、`main`、`HEAD~5`)与 `HEAD` 之间的差异。**编码标准(Standards)**检查代码是否遵循本仓库的编码方式。**规格说明(Spec)**检查代码是否符合发起此工作的议题或[规格说明](https://www.aihero.dev/ai-coding-dictionary/spec)要求。两个方面分别由独立的[子代理](https://www.aihero.dev/ai-coding-dictionary/subagent)执行，因此彼此看不到对方的推理。
+`code-review` 从两个方面审查你指定的固定参照点(提交、分支、标签、`main`、`HEAD~5`)与 `HEAD` 之间的差异。**编码标准(Standards)**检查代码是否遵循本仓库的编码方式。**规格说明(Spec)**检查代码是否符合发起此工作的 issue 或[规格说明](https://www.aihero.dev/ai-coding-dictionary/spec)要求。两个方面分别由独立的[子代理](https://www.aihero.dev/ai-coding-dictionary/subagent)执行，因此彼此看不到对方的推理。
 
 此技能绝不合并或重新排序两个维度的审查发现。报告结尾会分别列出两个维度各自最严重的问题，而不会强行给出一个单一总评或综合裁决。一项更改完全可以在一个维度通过，在另一个维度失败。遵循所有编码规范却实现了错误业务逻辑的代码，在"标准"维度通过，在"规格说明"维度失败；完全符合[工单](https://www.aihero.dev/ai-coding-dictionary/ticket)要求却严重破坏代码规范的改动则正好相反。混合评定只会让通过的维度掩盖真正失败的维度。
 
@@ -25,7 +25,7 @@
 
 规格说明方面需要存在且能够找到规格说明。它按以下顺序查找：
 
-1. 提交说明中的议题引用(`#123`、`Closes #45`、GitLab `!67`)，通过跟踪系统文档获取。
+1. 提交说明中的 issue 引用(`#123`、`Closes #45`、GitLab `!67`)，通过跟踪系统文档获取。
 2. 你作为参数传入的路径。
 3. `docs/`、`specs/` 或 `.scratch/` 下与分支或功能名称相符的规格说明文件。
 4. 询问你。
@@ -37,13 +37,13 @@
 | | 编码标准(Standards) | 规格说明(Spec) |
 | --- | --- | --- |
 | 问题 | 实现是否正确？ | 是否做了正确的事情？ |
-| 阅读内容 | 仓库记录的标准，以及代码异味基准 | 发起工作的议题或规格说明 |
+| 阅读内容 | 仓库记录的标准，以及代码异味基准 | 发起工作的 issue 或规格说明 |
 | 报告内容 | 记录的违规(可能属于硬性违规)和代码异味(始终需要判断) | 缺失或不完整的要求、范围扩大、实现错误的要求 |
 | 每项发现都引用 | 标准文件和具体规则，或代码异味名称及代码片段 | 规格说明中的对应行 |
 
 此设计用于避免通用审查技能不了解你们的编码标准。这类技能可能会指出代码库有意采用的做法，却漏掉代码库依赖的不变量。因此，在编码标准(Standards)方面，仓库自身文档是[一手资料](https://www.aihero.dev/ai-coding-dictionary/primary-source)，而且**仓库标准始终优先**。
 
-**代码异味基准**属于仓库标准的补充内容。它取自 Fowler《重构》第 3 章，共包含十二种代码异味：神秘名称 (Mysterious Name)、重复代码 (Duplicated Code)、特性依恋 (Feature Envy)、数据团簇 (Data Clumps)、基本类型偏执 (Primitive Obsession)、重复分支判断 (Repeated Switches)、霰弹式修改 (Shotgun Surgery)、发散式修改 (Divergent Change)、推测式通用性 (Speculative Generality)、消息链 (Message Chains)、中间人 (Middle Man)、被拒绝的遗赠 (Refused Bequest)。每种都是带标签的启发式判断("可能存在 Feature Envy")，绝不是硬性违规。每种异味都说明问题及修复方式，因此发现中包含修复建议，而不是只有抱怨。两个方面都跳过代码检查器已经强制执行的内容。
+**代码异味基准**属于仓库标准的补充内容。它取自 Fowler《重构》第 3 章，共包含十二种代码异味：神秘名称 (Mysterious Name)、重复代码 (Duplicated Code)、特性依恋 (Feature Envy)、数据团簇 (Data Clumps)、基本类型偏执 (Primitive Obsession)、重复分支判断 (Repeated Switches)、霰弹式修改 (Shotgun Surgery)、发散式修改 (Divergent Change)、推测式通用性 (Speculative Generality)、消息链 (Message Chains)、中间人 (Middle Man)、被拒绝的遗赠 (Refused Bequest)。每种都是带标签的启发式判断("可能存在 Feature Envy")，绝不是硬性违规。每种异味都说明问题及修复方式，因此发现中包含修复建议，而不是只有抱怨。两个方面都跳过 linter 已经强制执行的内容。
 
 ## 常见问题
 
@@ -54,7 +54,7 @@
 - **插件市场安装。** 每个技能名称都会加上 `mattpocock-skills:` 前缀，因此不带前缀的名称很难访问内置技能。
 - **普通技能安装。** 以本地文件优先，此技能会遮蔽内置技能。
 
-一种做法是完全移除 Claude Code 内置技能。这会节省大量[上下文](https://www.aihero.dev/ai-coding-dictionary/context)，也会消除名称冲突。遮蔽本身可以视为 Claude Code 的[运行环境](https://www.aihero.dev/ai-coding-dictionary/harness)错误(技能作者应当可以随意命名技能)，所以另一种做法是重命名本地副本。`npx skills update` 会撤销对前置元数据的编辑，或撤销重命名目录的操作。用户报告的持久解决办法是将技能分支为新名称，并从受管理的技能集合中移除 `code-review`。记下分支来源提交，以便之后手动同步。
+一种做法是完全移除 Claude Code 内置技能。这会节省大量[上下文](https://www.aihero.dev/ai-coding-dictionary/context)，也会消除名称冲突。遮蔽本身可以视为 Claude Code 的[harness](https://www.aihero.dev/ai-coding-dictionary/harness)错误(技能作者应当可以随意命名技能)，所以另一种做法是重命名本地副本。`npx skills update` 会撤销对前置元数据的编辑，或撤销重命名目录的操作。用户报告的持久解决办法是将技能分支为新名称，并从受管理的技能集合中移除 `code-review`。记下分支来源提交，以便之后手动同步。
 
 **它的子代理会再次调用 `/code-review`，并继续启动更多代理。**
 
@@ -94,7 +94,7 @@
 
 - [implement](https://aihero.dev/skills-implement) 是最相近的技能。它驱动构建流程，并在提交前将此技能作为最终审查步骤。[implement-spec](https://aihero.dev/skills-implement-spec) 也会在整个集成分支上执行一次同样的流程。
 - [retro](https://aihero.dev/skills-retro) 在它之后运行并调整审查。当会话显示审查漏掉某类错误时，`retro` 会提出检查方法或 `CODING_STANDARDS.md` 规则，供编码标准方面读取。
-- [pr](https://aihero.dev/skills-pr) 在审查完成的工作提交后撰写拉取请求正文。
+- [pr](https://aihero.dev/skills-pr) 在审查完成的工作提交后撰写 PR 正文。
 - [to-spec](https://aihero.dev/skills-to-spec) 和 [to-tickets](https://aihero.dev/skills-to-tickets) 会生成规格说明方面要对照的文档，因此规格说明含糊时，该方面的审查也会含糊。
 - [improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture) 是针对整个代码库的对应工具，因为此技能只检查一个差异。
 

@@ -72,7 +72,7 @@
 
 **它能在 Claude Code 之外使用吗？**
 
-生成的脚本可以。它是原生 Bash，不论由哪个[运行环境](https://www.aihero.dev/ai-coding-dictionary/harness)生成，都能以相同方式运行。技能本身可以由模型调用，因此在所有平台都会显示：在 Claude Code 中输入 `/wizard`，在 Codex 中输入 `$wizard`，或直接描述你遇到的设置问题。允许模型调用也能避开[议题 #693](https://github.com/mattpocock/skills/issues/693)中的问题：Claude 桌面和网页应用会从[模型](https://www.aihero.dev/ai-coding-dictionary/model)的技能列表中移除*用户调用*的技能，并报告技能未安装。
+生成的脚本可以。它是原生 Bash，不论由哪个[harness](https://www.aihero.dev/ai-coding-dictionary/harness)生成，都能以相同方式运行。技能本身可以由模型调用，因此在所有平台都会显示：在 Claude Code 中输入 `/wizard`，在 Codex 中输入 `$wizard`，或直接描述你遇到的设置问题。允许模型调用也能避开[issue #693](https://github.com/mattpocock/skills/issues/693)中的问题：Claude 桌面和网页应用会从[模型](https://www.aihero.dev/ai-coding-dictionary/model)的技能列表中移除*用户调用*的技能，并报告技能未安装。
 
 **它以前不是用户调用的技能吗？**
 

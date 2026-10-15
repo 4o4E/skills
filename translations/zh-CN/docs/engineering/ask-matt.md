@@ -20,7 +20,7 @@
 
 路由器会提到技能，但不会安装技能。它所指向的每项技能都必须已经安装，建议才可执行，而且它只了解本仓库中已正式发布的技能。
 
-依赖议题跟踪系统的路径(triage、`to-spec`、`to-tickets`、`implement`)都假定本仓库已通过 [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) 配置议题跟踪系统。即使还没有完成设置，路由器仍然会建议使用这些技能。
+依赖 issue tracker 的路径(triage、`to-spec`、`to-tickets`、`implement`)都假定本仓库已通过 [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) 配置 issue tracker。即使还没有完成设置，路由器仍然会建议使用这些技能。
 
 ## 工作流程，而不是技能清单
 
@@ -40,7 +40,7 @@
 | --- | --- |
 | **Continue** | 下一阶段需要逐字使用当前内容，或你仍处于[智能区(smart zone)](https://www.aihero.dev/ai-coding-dictionary/smart-zone)。这是唯一能将会话保留为[一手资料](https://www.aihero.dev/ai-coding-dictionary/primary-source)的方式，因此先判断能否 Continue(继续)；不能继续时再考虑其他方式 |
 | **`/clear`** | 当前会话中所有内容都可以丢弃。这是成本最低的选择；如果判断错误，就无法撤销 |
-| **[handoff](https://aihero.dev/skills-handoff)** | 需要带走一些内容：切换到新的[运行环境](https://www.aihero.dev/ai-coding-dictionary/harness)、新目录、同事，或在阶段中途拆分的旁支任务 |
+| **[handoff](https://aihero.dev/skills-handoff)** | 需要带走一些内容：切换到新的[harness](https://www.aihero.dev/ai-coding-dictionary/harness)、新目录、同事，或在阶段中途拆分的旁支任务 |
 | **Subagent** | 任务范围足够明确，可以让代理在你[离开键盘](https://www.aihero.dev/ai-coding-dictionary/afk)时自行完成 |
 | **`/compact`** | 以上选项都不适用。它是默认选项，而且通常会成为判断路径的最后一步 |
 

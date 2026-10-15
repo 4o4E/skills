@@ -1,12 +1,12 @@
 ---
 name: to-spec
-description: "将当前对话整理成规格说明并发布到项目议题跟踪系统：不进行访谈，只综合你们已经讨论过的内容。"
+description: "将当前对话整理成规格说明并发布到项目 issue tracker：不进行访谈，只综合你们已经讨论过的内容。"
 disable-model-invocation: true
 ---
 
 此技能根据当前对话上下文和对代码库的了解编写规格说明。不要访谈用户，只综合你已经知道的信息。
 
-议题跟踪系统和分流标签词汇应已提供给你。如果没有，告诉用户运行 `/setup-matt-pocock-skills`。
+issue tracker 和分流标签词汇应已提供给你。如果没有，告诉用户运行 `/setup-matt-pocock-skills`。
 
 ## 流程
 
@@ -16,7 +16,7 @@ disable-model-invocation: true
 
 与用户确认这些接缝符合他们的预期。
 
-3. 使用下方模板撰写规格说明，然后发布到项目议题跟踪系统。应用 `ready-for-agent` 分流标签，无需额外分流。
+3. 使用下方模板撰写规格说明，然后发布到项目 issue tracker。应用 `ready-for-agent` 分流标签，无需额外分流。
 
 <spec-template>
 
