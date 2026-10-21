@@ -14,11 +14,11 @@
 |---|---|
 | 决策正在等待某个外部事实 | `research` |
 | 希望通过访谈与你共同作出决定 | [grilling](https://aihero.dev/skills-grilling) |
-| 将架构决策持久地写入 `GLOSSARY.md` 和 ADR | [grill-with-docs](https://aihero.dev/skills-grill-with-docs) |
+| 通过项目已安装的 OpenSpec 工作流记录实际决定，并将术语保存在 `GLOSSARY.md` | [grill-with-docs](https://aihero.dev/skills-grill-with-docs) |
 | 确认某种方法在代码库中是否有效 | [prototype](https://aihero.dev/skills-prototype) |
 | 计划太大，无法在单个会话中处理 | [wayfinder](https://aihero.dev/skills-wayfinder) |
 
-`research` 和 `grill-with-docs` 的分界是结果的**保存期限**。Research 产出短期事实，例如本周这个库使用什么身份验证机制。ADR 记录的是要长期保留的决策。如果要生成的内容属于决策而非事实，那就是[讨论决策](https://www.aihero.dev/ai-coding-dictionary/grilling)，不是研究。
+`research` 和 `grill-with-docs` 的分界是**工作类型**。Research 产出有来源支持的事实，例如本周这个库使用什么身份验证机制。你通过[深入访谈](https://www.aihero.dev/ai-coding-dictionary/grilling)作出决定，再通过项目已安装的 OpenSpec 工作流记录。Research 提供事实，不替你作出或记录决定。
 
 ## 委派阅读工作
 
@@ -38,7 +38,7 @@
 
 **文件应该放在哪里？是否应该提交？**
 
-技能会将文件放到仓库已有的笔记位置，不提供其他建议。社区意见基本一致：保留 ADR，不保留研究文件。某个 Discord 讨论最清楚地表达了这一点："保留 ADR。其他内容在完成后归档或删除。否则就会成为工作残留，而且如果它偏离规格说明或研究结论，未来读取仓库时还可能受到干扰。"研究文件记录的是撰写当天成立的事实，因此过时的研究文件比没有文件更糟。总体而言，这些文件不应放进 Git，也没有标准保存位置。有人会使用 Obsidian、独立知识仓库或 issue tracker。
+技能会将文件放到仓库已有的笔记位置，不提供其他建议。研究笔记是撰写时事实的快照，过时的笔记可能误导后续工作。持久决定应保存在项目已安装的 OpenSpec 工作流中；研究笔记应按照仓库现有约定保留或删除。
 
 **什么才算"高可信度"的一手资料？由谁判断？**
 

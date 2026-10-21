@@ -14,11 +14,11 @@ Reach for it when the next step is *finding something out* from outside the work
 | --- | --- |
 | An external fact a decision is waiting on | `research` |
 | A decision made *with* you, by interview | [grilling](https://aihero.dev/skills-grilling) |
-| A durable architecture decision, written into `GLOSSARY.md` and ADRs | [grill-with-docs](https://aihero.dev/skills-grill-with-docs) |
+| An actual decision, recorded through the project's installed OpenSpec workflow, with terms kept in `GLOSSARY.md` | [grill-with-docs](https://aihero.dev/skills-grill-with-docs) |
 | To find out whether an approach works in your codebase | [prototype](https://aihero.dev/skills-prototype) |
 | A plan too big to hold in one session | [wayfinder](https://aihero.dev/skills-wayfinder) |
 
-The line between `research` and `grill-with-docs` is the **shelf life of what comes back**. Research produces short-lived facts, such as what this library's auth mechanism does as of this week. An ADR records a decision you keep. If what you are producing is a decision rather than a fact, you are [grilling](https://www.aihero.dev/ai-coding-dictionary/grilling), not researching.
+The line between `research` and `grill-with-docs` is the **kind of work**. Research produces sourced facts, such as what this library's auth mechanism does as of this week. A decision is made with you through [grilling](https://www.aihero.dev/ai-coding-dictionary/grilling), then recorded through the project's installed OpenSpec workflow. Research supplies facts; it does not make or record your decisions.
 
 ## Delegated legwork
 
@@ -38,7 +38,7 @@ The opposite failure also happens. If your own global instructions forbid an age
 
 **Where should the file live, and should I commit it?**
 
-The skill puts the file where the repo already keeps notes and has no further opinion. The community view is mostly settled: keep ADRs, not research files. One Discord thread on this question put it most clearly: "ADRs yes. Everything else archive or delete after done. It otherwise becomes cruft of work and can poison future repo reads if you've drifted away from the spec/research." A research file records what was true on the day it was written, so a stale one is worse than none. On balance, these files don't belong in git, and there is no standard home for them. People use Obsidian, a separate knowledge repo, or the issue tracker instead.
+The skill puts the file where the repo already keeps notes and has no further opinion. Research notes are snapshots of what was true when they were written, so stale notes can mislead later work. Keep durable decisions in the project's installed OpenSpec workflow; keep or remove research notes according to the repository's existing convention.
 
 **What counts as a "high-trust" primary source, and who decides?**
 

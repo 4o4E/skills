@@ -6,37 +6,13 @@ How the engineering skills should consume this repo's domain documentation when 
 
 - **`GLOSSARY.md`** at the repo root, or
 - **`GLOSSARY-MAP.md`** at the repo root if it exists: it points at one `GLOSSARY.md` per context. Read each one relevant to the topic.
-- **`docs/adr/`**: read ADRs that touch the area you're about to work in. In multi-context repos, also check `src/<context>/docs/adr/` for context-scoped decisions.
+- **Official OpenSpec project context**: follow the project's existing configuration and installed OpenSpec workflow to find relevant current specs and confirmed decisions. Read related change artifacts or archives when you need the rationale. Proposed changes and historical decisions are not automatically current constraints.
 
-If any of these files don't exist, **proceed silently**. Don't flag their absence; don't suggest creating them upfront. The `/domain-modeling` skill (reached via `/grill-with-docs` and `/improve-codebase-architecture`) creates them lazily when terms or decisions actually get resolved.
+A missing glossary does not block exploration. If OpenSpec is unavailable, existing readable records can still inform investigation; explicitly report the prerequisite when a task needs to record or update a decision.
 
-## File structure
+## Project layout
 
-Single-context repo (most repos):
-
-```
-/
-├── GLOSSARY.md
-├── docs/adr/
-│   ├── 0001-event-sourced-orders.md
-│   └── 0002-postgres-for-write-model.md
-└── src/
-```
-
-Multi-context repo (presence of `GLOSSARY-MAP.md` at the root):
-
-```
-/
-├── GLOSSARY-MAP.md
-├── docs/adr/                          ← system-wide decisions
-└── src/
-    ├── ordering/
-    │   ├── GLOSSARY.md
-    │   └── docs/adr/                  ← context-specific decisions
-    └── billing/
-        ├── GLOSSARY.md
-        └── docs/adr/
-```
+Use the root glossary for a single context, or follow `GLOSSARY-MAP.md` to each relevant context. Record the discovered project-specific OpenSpec pointers here during setup. OpenSpec owns its artifact formats, locations and lifecycle; this file only points consumers to that existing setup.
 
 ## Use the glossary's vocabulary
 
@@ -44,8 +20,8 @@ When your output names a domain concept (in an issue title, a refactor proposal,
 
 If the concept you need isn't in the glossary yet, that's a signal: either you're inventing language the project doesn't use (reconsider) or there's a real gap (note it for `/domain-modeling`).
 
-## Flag ADR conflicts
+## Respect confirmed decisions
 
-If your output contradicts an existing ADR, surface it explicitly rather than silently overriding:
+When a proposal conflicts with a current confirmed decision, cite the relevant OpenSpec artifact and explain the concrete reason for reconsidering it. Obtain a decision on the substantive change before implementing it.
 
-> _Contradicts ADR-0007 (event-sourced orders), but worth reopening because…_
+For recording human decisions or resolving domain terminology, call the Skill tool with "domain-modeling". It maintains the glossary and hands decision recording to the project's official OpenSpec workflow.

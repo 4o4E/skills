@@ -14,32 +14,32 @@ Reach for it when the *words* are the problem:
 | --- | --- |
 | Two people mean different things by "cancellation" | `domain-modeling`: pick the canonical term, list the other under `_Avoid_` |
 | "Account" is doing three jobs in three files | `domain-modeling`: split it into Customer and User |
-| You just made a hard-to-reverse architectural choice | `domain-modeling`: it offers an ADR, if the choice clears the bar |
+| Human input settles or changes a project decision | `domain-modeling`: record the confirmed decision through the project's official OpenSpec workflow |
 | The module's *shape* is the problem: where the seam goes, how deep the interface is | [codebase-design](https://aihero.dev/skills-codebase-design) |
 | You want the whole plan interrogated before you build | [grill-with-docs](https://aihero.dev/skills-grill-with-docs), which drives this skill underneath |
 | You want a term looked up, not changed | Nothing. Read `GLOSSARY.md`. It is a file. |
 
 ## Prerequisites
 
-None up front. The skill writes into two places and creates both lazily:
+The glossary and decision recording have different prerequisites:
 
 - **`GLOSSARY.md`** at the repo root. The skill creates it when you settle the first term. In a repo with a `GLOSSARY-MAP.md` at the root, terms go into the per-context `GLOSSARY.md` the map points at instead.
-- **`docs/adr/`**. The skill creates it with the first ADR that clears the bar.
+- **Official OpenSpec** installed and configured for the target project. Decision recording uses that project's existing skills or commands, configuration and artifacts.
 
-Nothing needs to exist before you start, and the skill creates nothing in advance.
+Glossary work can begin immediately. If OpenSpec needs installation or initialization, the skill reports that decision recording is incomplete and points to the official setup workflow. This collection supplies the confirmed decisions; OpenSpec owns their storage and lifecycle.
 
-## Two artifacts, two bars
+## Vocabulary and confirmed decisions
 
-The glossary and the ADR have different bars. Most of the trouble with this skill comes from mixing them up.
+Keep domain definitions in the glossary and project decisions in the official OpenSpec workflow.
 
-| | `GLOSSARY.md` | `docs/adr/NNNN-slug.md` |
+| | `GLOSSARY.md` | OpenSpec artifacts |
 | --- | --- | --- |
-| Holds | Terms. What a thing **is**, in one or two sentences, with rejected synonyms under `_Avoid_` | One decision, in one to three sentences: context, choice, reason |
-| Bar to write | A vague term became canonical | **All three**: hard to reverse, surprising without context, the result of a real trade-off |
-| Written | Inline, the moment the term is settled | Offered, not assumed |
-| Never holds | Implementation details, a [spec](https://www.aihero.dev/ai-coding-dictionary/spec), a scratch pad, general programming concepts | A diary of every choice made this session |
+| Holds | Terms. What a thing **is**, in one or two sentences, with rejected synonyms under `_Avoid_` | Confirmed project decisions, their scope, confirmation source and supplied reasoning |
+| Bar to write | A vague term became canonical | Human input settles or changes a decision |
+| Written | Inline, the moment the term is settled | Through the official workflow when the decision is confirmed |
+| Boundary | Definitions only, not implementation details or a [spec](https://www.aihero.dev/ai-coding-dictionary/spec) | Agent recommendations remain distinct from human decisions; unstated reasons remain unknown |
 
-Miss any one of the ADR's three tests and there is no ADR. An easily-reversed decision will just get reversed; an unsurprising one is nobody's question; one with no real alternative records that you did the obvious thing.
+Business rules, scope, acceptance criteria, architecture and exceptions all qualify when a human decides them. Recording an already confirmed choice does not require another confirmation. Repeated confirmations can reference the existing record.
 
 The `GLOSSARY.md` rule matters most, because it is the one that breaks in practice. **It is a glossary and nothing else.** Left unchecked, models treat "write to `GLOSSARY.md`" as permission to persist every answer you give, and the file turns into a running spec. This is the most-reported problem with the skill, across several models.
 
@@ -47,15 +47,12 @@ The `GLOSSARY.md` rule matters most, because it is the one that breaks in practi
 
 When you state how something works, the skill checks the code and points out any contradiction. *"Your code cancels entire Orders, but you just said partial cancellation is possible, which is right?"* The skill makes the language and the code agree, out loud, before it changes either.
 
-It cross-references **code** and the committed `GLOSSARY.md` and ADRs, and nothing else. It does not search your issue tracker. If your team argued out a naming collision and settled it in a closed issue months ago, the skill raises it again as if it were new. There is [an open request](https://github.com/mattpocock/skills/issues/717) to fix this. Until then, the workaround is to put the instruction in your own `docs/agents/domain.md`, which the skills already read.
+It cross-references **code**, `GLOSSARY.md`, and relevant OpenSpec specs and change artifacts. It distinguishes current confirmed decisions from proposals and historical choices, consulting related archives when their rationale matters. It does not automatically search every closed issue; project-specific pointers belong in `docs/agents/domain.md`.
 
 ## Common questions
 
 **My `GLOSSARY.md` is 500 lines. 1,000. 3,000. What do I do?**
 The size is a symptom. The cause is that the file has taken in implementation detail and decisions that never belonged in a glossary. The fix is a direct instruction: `/grill-with-docs make my GLOSSARY.md more concise and remove any implementation details from it`. Run it against a bloated file and most of it goes. Only split it with a `GLOSSARY-MAP.md` once the file is lean and still covers two domains that a reader would not want to hold at once. Splitting a bloated file gives you several bloated files. The skill's guidance here is not yet strong enough to prevent the growth in the first place, and the issue tracking that is still open.
-
-**Why is it `GLOSSARY.md` and not `GLOSSARY.md`?**
-This is the most-argued naming question in the whole skill set and it has no settled answer. The case against the current name is good: if it is "a glossary and nothing else", `GLOSSARY.md` says so, and, as one reader put it, "with ai agents everything is [context](https://www.aihero.dev/ai-coding-dictionary/context)". The case for it is the map: `GLOSSARY-MAP.md` pointing at several `GLOSSARY.md` files reads naturally in a way `GLOSSARY-MAP.md` does not, and `context` is the standing DDD word for a bounded area of the model. At least one person maintains a local fork purely to rename the file. You can do the same, but every other skill in the set looks for `GLOSSARY.md`, so a rename means patching all of them.
 
 **Where did `/ubiquitous-language` go?**
 It was removed, and it was not deprecated. Its job moved into `domain-modeling`, which maintains the whole model continuously rather than dumping a glossary out of one conversation. Vocabulary enforcement now matters more, not less. It runs underneath grilling, triage and mapping rather than as a separate pass you have to remember.
@@ -63,8 +60,8 @@ It was removed, and it was not deprecated. Its job moved into `domain-modeling`,
 **How do I get a glossary for a codebase that has none?**
 Ask for it explicitly rather than waiting for it to accumulate. `/grill-with-docs help me scaffold my existing repo with a GLOSSARY.md` is the documented route. Expect a long interrogation. One user reported more than 50 questions before the file was in shape. Incidental use builds the glossary far too slowly on a brownfield repo.
 
-**Can I keep the domain model and use my own ADR format?**
-Not cleanly today. The glossary half and the ADR half ship in one skill, so a team with an established ADR convention (different template, different location, different naming) gets instructions that conflict with its house style. The current options are to copy the skill locally and edit it, or to override the ADR conventions in your repo's own agent docs. Splitting the two apart is [an open request](https://github.com/mattpocock/skills/issues/557).
+**Does this collection maintain its own OpenSpec implementation?**
+No. It uses the target project's installed official OpenSpec workflow. Artifact formats, storage and lifecycle operations follow that installation and the project's configuration. The skill passes confirmed decisions to it and verifies the resulting records.
 
 **Does a glossary actually earn its keep? It is one more artifact to review, and it can go stale.**
 Sometimes it does not. DDD gets less useful the closer it gets to the implementation. The payoff is upstream, in naming and concept alignment, not in aggregates and layer ceremony. Synonym control matters at naming boundaries: module names, table names, status enums, issue titles, CLI commands. It matters much less in ordinary prose. There is also an objection that domain terms compress communication *between humans* who already share them, and that an agent responds the same way to the plain-English description. On that reading, the glossary's value is keeping you and your reviewers aligned with what the agent is doing, not making the agent better. On a one-day build, skip it. And an unreviewed, agent-authored glossary is worse than none: it fills with confident claims that later sessions treat as true.
@@ -76,7 +73,7 @@ No, and there is no plan for a skill that does. A domain language you do not und
 
 - It stops you mid-sentence to ask which of two things you meant, instead of picking one and moving on.
 - `GLOSSARY.md` changes **during** the conversation, not in a burst at the end.
-- It refuses to write an ADR for something you could undo tomorrow, and says which of the three tests failed.
+- It shows where your confirmed decisions were recorded through OpenSpec, or clearly identifies the missing prerequisite when recording cannot complete.
 - New entries define what a thing *is* in one or two sentences and name the words you are giving up under `_Avoid_`.
 - It quotes your code back at you when your code and your sentence disagree.
 - `GLOSSARY.md` gets shorter as often as it gets longer.

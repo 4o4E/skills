@@ -1,3 +1,5 @@
+This fork uses the target project's installed official OpenSpec workflow for project decisions. Keep skill integration limited to reading relevant project context and handing confirmed decisions to that workflow. OpenSpec owns artifact formats, storage and lifecycle; follow the project's configuration and the installed official skills or commands. Maintain English instructions and their Chinese counterparts together.
+
 Skills are organized into bucket folders under `skills/`:
 
 - `engineering/`: daily code work

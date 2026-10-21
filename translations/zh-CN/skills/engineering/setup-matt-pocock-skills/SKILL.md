@@ -10,7 +10,7 @@ disable-model-invocation: true
 
 - **issue tracker**：问题所在位置(默认为 GitHub；同时原生支持本地 Markdown)
 - **分流标签**：五个规范分流角色所使用的字符串
-- **领域文档**：`GLOSSARY.md` 和 ADR 的存放位置，以及读取这些文件的使用规则
+- **领域文档**：`GLOSSARY.md` 的存放位置、如何进入项目官方 OpenSpec 工作流，以及读取这些记录的使用规则
 
 这是一项由提示驱动的技能，不是确定性脚本。先探索、说明发现的情况、向用户确认，然后再写入文件。
 
@@ -23,7 +23,7 @@ disable-model-invocation: true
 - `git remote -v` 和 `.git/config`：这是 GitHub 仓库吗？是哪一个？
 - 仓库根目录的 `AGENTS.md` 和 `CLAUDE.md`：其中是否有一个存在？其中是否已有 `## Agent skills` 章节？
 - 仓库根目录的 `GLOSSARY.md` 和 `GLOSSARY-MAP.md`
-- `docs/adr/` 以及任何 `src/*/docs/adr/` 目录
+- 项目的 OpenSpec 配置、现有产物，以及可用的官方 OpenSpec skills 或命令
 - `docs/agents/`：此技能以前生成的内容是否已存在？
 - `.scratch/`：它可能表明已在使用本地 Markdown 问题跟踪约定
 - 是否安装了 `triage` 技能？(本技能旁边是否有 `triage` 技能目录，或你的可用技能中是否有 `triage`。)它决定是否需要执行 B 部分。
@@ -56,9 +56,11 @@ disable-model-invocation: true
 
 默认标签是五个规范角色，且各标签字符串与角色名称相同：`needs-triage`、`needs-info`、`ready-for-agent`、`ready-for-human`、`wontfix`。回答**是**时，原样写入。只有用户回答否时(通常因为其 issue tracker 已经使用其他名称，例如用 `bug:triage` 表示 `needs-triage`)，才收集替代标签，让 `triage` 使用现有标签，而不是创建重复标签。
 
-**C 部分：领域文档。**默认使用**单一上下文**(在仓库根目录放置一个 `GLOSSARY.md` 和一个 `docs/adr/`)。这适用于几乎所有仓库；直接写入，无需询问。
+**C 部分：领域文档。**默认使用**单一上下文**(在仓库根目录放置一个 `GLOSSARY.md`)，并记录如何进入项目现有的官方 OpenSpec 工作流。这适用于几乎所有仓库；根据已发现的配置记录，无需再次询问。
 
 只有在探索时发现单体仓库信号，才提出使用**多上下文**(在根目录放置 `GLOSSARY-MAP.md` 并指向各个上下文的 `GLOSSARY.md` 文件)。接着确认用户想采用哪种布局。
+
+OpenSpec 负责决定的存储和工作流。记录现有设置的指引，不要将其模板、schema 或命令复制到这些技能中。如果 OpenSpec 不可用或尚未初始化，应说明记录决定的前置条件，并在获得授权后使用官方设置工作流；其他配置仍可完成。
 
 ### 3. 确认并编辑
 

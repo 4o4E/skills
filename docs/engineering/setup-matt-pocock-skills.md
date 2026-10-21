@@ -2,7 +2,7 @@
 
 `setup-matt-pocock-skills` answers three questions about one repo: where issues live, what the triage labels are called, and where the domain docs sit. It records the answers as markdown files under `docs/agents/`.
 
-Those files are the only thing that varies between repos. The skills themselves are identical everywhere. They read `docs/agents/issue-tracker.md` at run time and do what it says. That is why the set is not tied to GitHub, and why you never edit a skill file to point it at another tracker. Invoking it with "link the skills to a custom issue tracker" works with anything you can connect to programmatically, with no changes to the skills.
+The skills read these project-specific pointers at run time. They use `docs/agents/issue-tracker.md` for tracker operations and the project's existing official OpenSpec setup for decision records. Invoking setup with "link the skills to a custom issue tracker" works with anything you can connect to programmatically, with no changes to the skills.
 
 It is a prompt-driven skill, not a deterministic script. It reads your `git remote`, `CLAUDE.md` and `GLOSSARY.md`, proposes what it found, and waits for you to confirm before it writes anything.
 
@@ -33,7 +33,9 @@ It starts each section with the recommended answer, and skips any question its e
 | --- | --- | --- |
 | **Issue tracker** | the one matching your `git remote` | always, because this is the one real choice |
 | **Triage labels** | keep the five canonical names (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`) | only if the `triage` skill is installed |
-| **Domain docs** | single-context: one `GLOSSARY.md` plus `docs/adr/` at the root | only if it spots monorepo signals, and then it offers a multi-context `GLOSSARY-MAP.md` |
+| **Domain docs** | single-context: one root `GLOSSARY.md`, plus pointers to the project's official OpenSpec setup | only if it spots monorepo signals, and then it offers a multi-context `GLOSSARY-MAP.md` |
+
+OpenSpec manages decision records through its own installed workflow and project configuration. Setup records how to reach it. If it needs installation or initialization, decision recording remains pending that official setup; the issue tracker, labels and glossary configuration can still be completed.
 
 The tracker options:
 
@@ -64,9 +66,9 @@ This is a known gap, and still open. The file-selection rule is "edit `CLAUDE.md
 
 **It didn't create my triage labels.**
 
-It doesn't. `docs/agents/triage-labels.md` is a *mapping*: it tells `/triage` which strings in your tracker correspond to the five canonical roles. It does not run `gh label create`. On a fresh GitHub repo the labels do not exist yet, and users have filed this as a bug more than once. Two consequences:
+When `triage` is installed and its label configuration is confirmed, setup writes the mapping and creates configured labels missing from GitHub or GitLab. If creation is incomplete, check the reported command result and tracker access. Two boundaries matter:
 
-- If your tracker already uses the canonical names, the mapping is an identity table and there is nothing to configure. That is the intended common case, not a missing step.
+- If your tracker already has the configured labels, setup can reuse them.
 - This skill does not create [wayfinder](https://aihero.dev/skills-wayfinder)'s `wayfinder:map` and `wayfinder:<type>` labels either, and `gh issue create --label <missing>` fails instead of creating the label. Create them by hand before the first wayfinder run on a GitHub repo.
 
 **Can I configure the other skills' behaviour here ([grilling](https://www.aihero.dev/ai-coding-dictionary/grilling) cadence, question format, tone)?**
@@ -91,4 +93,4 @@ One long-standing complaint says yes, in these words: *"having a skill to set up
 
 ## Where it fits
 
-`setup-matt-pocock-skills` is the **run-once setup** for the engineering flow, the precondition everything else assumes rather than a step in the chain. Its neighbours are its readers: [triage](https://aihero.dev/skills-triage), which applies the label vocabulary written here; [to-spec](https://aihero.dev/skills-to-spec) and [to-tickets](https://aihero.dev/skills-to-tickets), which publish into the tracker named here; and [wayfinder](https://aihero.dev/skills-wayfinder), which reads the "Wayfinding operations" section of the same tracker file to learn how to store maps and child [tickets](https://www.aihero.dev/ai-coding-dictionary/ticket). [domain-modeling](https://aihero.dev/skills-domain-modeling) later fills in the domain-doc layout that setup records. It creates `GLOSSARY.md` and ADRs only when you resolve a term or decision, so a repo with no domain docs after setup is normal. For which skill to reach for next, [ask-matt](https://aihero.dev/skills-ask-matt) routes the whole set.
+`setup-matt-pocock-skills` is the **run-once setup** for the engineering flow, the precondition everything else assumes rather than a step in the chain. Its neighbours are its readers: [triage](https://aihero.dev/skills-triage), which applies the label vocabulary written here; [to-spec](https://aihero.dev/skills-to-spec) and [to-tickets](https://aihero.dev/skills-to-tickets), which publish into the tracker named here; and [wayfinder](https://aihero.dev/skills-wayfinder), which reads the "Wayfinding operations" section of the same tracker file to learn how to store maps and child [tickets](https://www.aihero.dev/ai-coding-dictionary/ticket). [domain-modeling](https://aihero.dev/skills-domain-modeling) later creates glossary entries as terms resolve and records confirmed decisions through the official OpenSpec workflow. Setup itself only records the documentation pointers. For which skill to reach for next, [ask-matt](https://aihero.dev/skills-ask-matt) routes the whole set.

@@ -10,6 +10,10 @@
 
 # 为真正的工程师准备的技能
 
+## OpenSpec 定制
+
+此分支通过目标项目已安装的[官方 OpenSpec](https://github.com/Fission-AI/OpenSpec) 工作流记录已确认的项目决定。这些技能维护领域词汇，并将决定交给 OpenSpec；产物格式、存储位置和生命周期由 OpenSpec 及项目配置负责。需要时，请按照官方说明安装和初始化 OpenSpec。
+
 [![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
 
 这套智能体技能是我日常从事严谨工程开发使用的工具，而非用来随性写代码(vibe coding)。
@@ -153,7 +157,7 @@ npx skills@latest add mattpocock/skills -a <agent> # cursor, opencode, devin, wi
 
 </details>
 
-这项能力已纳入 [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md)。它是一场追问会话，能帮助你与人工智能建立共同语言，并在 ADR 中记录难以解释的决定。
+这项能力已纳入 [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md)。它能帮助你与人工智能建立共同语言，并通过官方 OpenSpec 工作流记录已确认的项目决定。
 
 这项能力的效果极为突出，可能是本仓库中最实用的技巧，值得一试。
 
@@ -217,7 +221,7 @@ npx skills@latest add mattpocock/skills -a <agent> # cursor, opencode, devin, wi
 **由用户调用**
 
 - **[ask-matt](./skills/engineering/ask-matt/SKILL.md)**：询问哪种技能或流程适合当前情况。它会为此代码仓库中由用户调用的技能提供路由。
-- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)**：同时建立项目领域模型的追问会话，帮助明确术语，并在对话中更新 `GLOSSARY.md` 和 ADR。
+- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)**：同时建立项目领域模型的追问会话，帮助明确术语、更新 `GLOSSARY.md`，并通过 OpenSpec 记录已确认的决定。
 - **[triage](./skills/engineering/triage/SKILL.md)**：让 issue 按照由分流角色组成的状态机流转。
 - **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)**：扫描代码库寻找适合加深模块的机会，以可视化 HTML 报告呈现，再通过追问探讨你选定的机会。
 - **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)**：为工程技能配置此代码仓库(issue tracker、分流标签、领域文档结构)。使用其他工程技能之前，每个代码仓库运行一次。
@@ -234,7 +238,7 @@ npx skills@latest add mattpocock/skills -a <agent> # cursor, opencode, devin, wi
 - **[diagnosing-bugs](./skills/engineering/diagnosing-bugs/SKILL.md)**：针对难以排查的缺陷和性能退化，采用严谨的诊断流程：建立会因该缺陷而变红的反馈回路 → 缩小问题 → 提出假设 → 加入观测 → 修复 → 回归测试。
 - **[research](./skills/engineering/research/SKILL.md)**：依据高度可信的一手资料调查问题，并将附有引用的 Markdown 文件写入代码仓库，由后台代理运行。
 - **[tdd](./skills/engineering/tdd/SKILL.md)**：采用红绿重构循环进行测试驱动开发，一次处理一个垂直切片，构建功能或修复问题。
-- **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)**：主动建立并明确项目领域模型：根据词汇表质疑术语，使用边缘情境进行压力测试，并在对话中更新 `GLOSSARY.md` 和 ADR。
+- **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)**：主动建立并明确项目领域模型：根据词汇表质疑术语，使用边缘情境进行压力测试，更新 `GLOSSARY.md`，并通过 OpenSpec 记录已确认的决定。
 - **[codebase-design](./skills/engineering/codebase-design/SKILL.md)**：设计深层模块时遵循共同的纪律和词汇：少量接口承载大量行为，将模块放在清晰的接缝处，并确保可以通过接口进行测试。
 - **[code-review](./skills/engineering/code-review/SKILL.md)**：从固定基准点审查差异，分为两个方面：**编码标准(Standards)**(是否遵循代码仓库规范，并参照 Fowler 的代码异味基准？)和**规格说明(Spec)**(是否忠实实施源 issue 或规格说明？)；由并行子代理分别执行，避免相互影响。
 - **[pr](./skills/engineering/pr/SKILL.md)**：规范 PR 正文格式：以最精简的图示说明变更，提供前后证据证明变更有效，并评估合并风险(单向门还是双向门，以及影响范围)。

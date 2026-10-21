@@ -10,7 +10,9 @@ The issue tracker and triage label vocabulary should have been provided to you. 
 
 ## Process
 
-1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the spec, and respect any ADRs in the area you're touching.
+The output is an issue-tracker brief for implementation. Read the project's relevant OpenSpec records as inputs; maintain formal OpenSpec artifacts through its installed official workflow.
+
+1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the spec. Read the relevant current OpenSpec specifications and confirmed decisions in the area you're touching, checking related archived changes when needed. Respect confirmed decisions; a proposal alone is not a confirmed decision.
 
 2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can. The fewer seams across the codebase, the better - the ideal number is one.
 

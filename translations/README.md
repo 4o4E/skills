@@ -1,6 +1,8 @@
 # Skills 中文审阅译本
 
-本目录提供 27 个正式 skills 及其引用材料和使用说明的中文译本，供逐项审查原有规则。翻译基于 [mattpocock/skills 的原文版本](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336)。
+本目录提供 27 个正式 skills 及其引用材料和使用说明的中文版本。此分支的决策记录使用项目已安装的[官方 OpenSpec](https://github.com/Fission-AI/OpenSpec)，中文内容与本分支的英文定制规则同步。OpenSpec 的文档格式、存储位置和工作流程由 OpenSpec 本体及项目配置负责。
+
+忠实于上游的中文审阅译本保存在 [docs/zh-cn-translation 分支](https://github.com/4o4E/skills/tree/docs/zh-cn-translation/translations)，其上游基线为 [49dd158](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336)。
 
 阅读[完整中文介绍](./zh-CN/README.md)，或从下表打开具体规则。每个中文文件在仓库根目录下都有相同相对路径的英文原文，便于逐段核对。命令、代码标识符、配置字段和外部链接保留原文。
 

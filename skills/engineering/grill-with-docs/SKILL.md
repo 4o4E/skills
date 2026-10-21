@@ -1,6 +1,6 @@
 ---
 name: grill-with-docs
-description: A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go.
+description: A relentless interview to sharpen a plan or design, update the domain glossary, and record actual decisions through the project's installed OpenSpec workflow.
 disable-model-invocation: true
 ---
 

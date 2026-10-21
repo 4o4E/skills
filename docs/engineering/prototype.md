@@ -25,7 +25,7 @@ Both keep state in memory, start with no setup, and show you the full state afte
 
 A finished prototype leaves two things, and they go to different places.
 
-You record the **answer** (the verdict plus the question it settled) somewhere permanent: a commit message, an ADR, the implementation issue. Main keeps the answer, in the real code.
+You record the **answer** (the verdict plus the question it settled) somewhere permanent, such as a commit message or the implementation issue. If the result leads to a human decision, record that decision through the project's official OpenSpec workflow. Main keeps the answer in the real code.
 
 The **prototype** is the runnable evidence the answer came from, and you do not delete it. It doesn't belong in main either, because nobody maintains it and it goes stale fast. So you commit it to a throwaway `prototype/<name>` branch out of main, never merge it, and leave a [context pointer](https://www.aihero.dev/ai-coding-dictionary/context-pointer) to that branch on the implementation issue. Main stays clean, and whoever picks the work up next can find and re-run the prototype.
 

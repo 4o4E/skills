@@ -27,9 +27,9 @@ Where it is confusable with siblings:
 
 ## Prerequisites
 
-None to run it. If `GLOSSARY.md` or ADRs in `docs/adr/` exist, it reads them and uses your domain's own nouns. A candidate then reads as "deepen the Order intake module," not "refactor the FooBarHandler."
+None to run it. If `GLOSSARY.md` or relevant OpenSpec specifications and confirmed decisions exist, it reads them and uses your domain's own nouns. A candidate then reads as "deepen the Order intake module," not "refactor the FooBarHandler." Proposals do not count as confirmed decisions.
 
-It writes in two places. The report goes to `<tmpdir>/architecture-review-<timestamp>.html`, outside the repo. During the grilling loop it adds or sharpens terms in `GLOSSARY.md`, and creates that file if it does not exist. It also offers to record a rejected candidate as an ADR, so a future run does not suggest it again.
+The report goes to `<tmpdir>/architecture-review-<timestamp>.html`, outside the repo. During the grilling loop it adds or sharpens terms in `GLOSSARY.md`, and creates that file if it does not exist. Each actual decision is recorded through the project's installed official OpenSpec workflow without another confirmation request. If that workflow is unavailable, the record remains incomplete until its prerequisite is met.
 
 ## Depth, and the report that hunts for it
 
@@ -97,10 +97,10 @@ The skill does not ship a good answer. People often ask for a `TYPESCRIPT.md` wi
 
 - The candidates name your domain's concepts, not invented class names: "the Order intake module," not "the FooBarHandler."
 - The candidates are in files you edited recently, not in parts of the repo nobody touches.
-- No code changed during the run. The only new file is the HTML report in your temp directory.
+- Before discussing candidates, the output is an HTML report in your temp directory and the code is unchanged. During the discussion, resolved terms update the glossary and confirmed decisions are recorded through OpenSpec.
 - It stops after the report and asks which candidate you want. It does not continue on its own.
 - Each card explains the payoff as locality or leverage, and says which tests get simpler, not just "this is cleaner."
-- When you reject a candidate for a lasting reason, it offers to record an ADR, so the next run does not suggest it again.
+- Each actual decision is recorded through the project's installed official OpenSpec workflow, with the user's stated reasons and confirmation source clear.
 
 ## Where it fits
 
@@ -108,6 +108,6 @@ The skill does not ship a good answer. People often ask for a `TYPESCRIPT.md` wi
 
 - [codebase-design](https://aihero.dev/skills-codebase-design) owns the depth-and-seam vocabulary that every candidate uses.
 - [grilling](https://aihero.dev/skills-grilling) walks the decision tree after you choose a candidate.
-- [domain-modeling](https://aihero.dev/skills-domain-modeling) keeps `GLOSSARY.md` and the ADRs current as you make the decision.
+- [domain-modeling](https://aihero.dev/skills-domain-modeling) keeps `GLOSSARY.md` and confirmed decisions current as you make them.
 
 Its output is an idea, which goes back into the main build flow at [grill-with-docs](https://aihero.dev/skills-grill-with-docs) or [to-spec](https://aihero.dev/skills-to-spec). Its counterpart at the end of the main flow is [retro](https://aihero.dev/skills-retro). This skill improves the code the agent works in, and `retro` improves the environment around it (checks, standards, steering files) after a build. For which skill fits a situation, [ask-matt](https://aihero.dev/skills-ask-matt) is the router over the whole set.

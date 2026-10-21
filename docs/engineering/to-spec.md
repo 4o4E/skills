@@ -1,8 +1,8 @@
 ## What it does
 
-`to-spec` turns the conversation you have just had into a **[spec](https://www.aihero.dev/ai-coding-dictionary/spec)**, and publishes it to your issue tracker as a single issue.
+`to-spec` turns the conversation you have just had into an **issue-tracker brief** and publishes it as a single issue. This brief is separate from the formal specifications maintained through the project's installed official OpenSpec workflow.
 
-It does not interview you. When you reach for it, the deciding is already done. So it synthesises what is known (from the thread, the codebase, your `GLOSSARY.md` and ADRs) and does not start a new round of questions. The spec records decisions you already made. It is not a place to make new ones.
+It does not interview you. When you reach for it, the deciding is already done. So it synthesises what is known (from the thread, the codebase, your `GLOSSARY.md` and relevant confirmed OpenSpec decisions) and does not start a new round of questions. The issue-tracker spec records decisions you already made. It is not a place to make new ones.
 
 ## When to reach for it
 
@@ -21,11 +21,11 @@ Reach for it when the build is too big for one agent [session](https://www.aiher
 
 `to-spec` publishes the spec as an issue, so [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) must first configure a tracker and the triage-label vocabulary for this repo. Either kind of tracker works: a real tracker like GitHub, or local markdown files under `.scratch/`, which work with no extra setup.
 
-## The spec is a decision record
+## The issue brief preserves the build context
 
-The spec exists because context windows end. You settled many things while [grilling](https://www.aihero.dev/ai-coding-dictionary/grilling): the shape of the solution, the choices you argued through, and what you deliberately refused. All of that is in one conversation that you are about to clear. The spec keeps it.
+The issue-tracker brief exists because context windows end. You settled many things while [grilling](https://www.aihero.dev/ai-coding-dictionary/grilling): the shape of the solution, the choices you argued through, and what you deliberately refused. All of that is in one conversation that you are about to clear. The brief keeps the build context.
 
-So the spec does not validate or decide anything. It records what you decided, in your project's own vocabulary, so a fresh session can pick up the work without you explaining it again. If the spec states something you never said, that is a defect.
+So the issue-tracker brief does not validate or decide anything. It preserves the build context and records what you decided, in your project's own vocabulary, so a fresh session can pick up the work without you explaining it again. The project's formal OpenSpec specifications and decision artifacts continue to be maintained through OpenSpec's installed official workflow and lifecycle. Only the issue-tracker brief is treated as disposable after delivery. If either record states something you never said, that is a defect.
 
 ## Seams before prose
 
@@ -51,13 +51,13 @@ Give it the main map issue, `/to-spec #<map_issue>`, not the individual decision
 Mostly for the agent, and it reads that way: complete, dense, and full of references. Read the seams and the out-of-scope section. In those two places, a wrong decision is cheapest to catch now and most expensive to find later. People do complain about reading the whole thing, and there is no summary mode. But if the spec surprises you, the grilling was too shallow; the spec is not too long.
 
 **Do I keep the spec frozen once tickets start, or let the agent rewrite it?**
-Nothing keeps it in sync. In practice it is a snapshot of what you knew at that moment, and it goes out of date the first time implementation teaches you something. Treat it as disposable after the work ships. Your `GLOSSARY.md` and ADRs are the files meant to last. If you learn something during implementation that should last, put it there, not in an edited spec.
+Nothing keeps the issue-tracker brief in sync. In practice it is a snapshot of what you knew at that moment, and it goes out of date the first time implementation teaches you something. Treat that brief as disposable after the work ships. OpenSpec's formal specifications and confirmed decisions remain governed by its installed official workflow and lifecycle. If you make a durable decision during implementation, record it through that workflow, not by editing the issue brief.
 
 **My work is a refactor or a module boundary, not a feature. Does the template fit?**
-Less well, and this is a known limitation. The template relies heavily on user stories, which do not fit architectural work. You end up writing stories nobody asked for around decisions that are really about interfaces and invariants. Use the implementation-decisions and testing-decisions sections instead. Record the lasting architectural decisions as ADRs through [grill-with-docs](https://aihero.dev/skills-grill-with-docs), not in the spec.
+Less well, and this is a known limitation. The template relies heavily on user stories, which do not fit architectural work. You end up writing stories nobody asked for around decisions that are really about interfaces and invariants. Use the implementation-decisions and testing-decisions sections instead. Record lasting architectural decisions through the project's installed official OpenSpec workflow, not in the issue brief.
 
-**Will it check the tracker for related work, or cite the ADRs it's respecting?**
-No to both. It reads and follows the ADRs for the area it touches, but it does not link them. It also does not search the tracker for overlapping issues before it writes, so a spec can duplicate work that someone already filed, and nothing warns you. If the area is busy, search the tracker yourself first.
+**Will it check the tracker for related work, or cite the OpenSpec decisions it's respecting?**
+No to both. It reads relevant current OpenSpec specifications and confirmed decisions for the area it touches, but it does not link them. It also does not search the tracker for overlapping issues before it writes, so an issue brief can duplicate work that someone already filed, and nothing warns you. If the area is busy, search the tracker yourself first. A proposal is not treated as a confirmed decision.
 
 **`/to-tickets` couldn't read my spec: it kept truncating.**
 A tracker issue may not return a very large spec in full, and there is no local copy to use instead. To fix this, do not [clear](https://www.aihero.dev/ai-coding-dictionary/clearing) or [compact](https://www.aihero.dev/ai-coding-dictionary/compaction) between `/to-spec` and `/to-tickets`. Run them in the same window, and `/to-tickets` never has to fetch the spec again.

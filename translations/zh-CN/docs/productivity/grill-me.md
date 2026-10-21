@@ -13,7 +13,7 @@
 你应根据眼前的情况，从三种追问技能中选择：
 
 - **任何事情，任何地方。** 使用 `grill-me`。它不需要代码仓库，也不写文件；主题也不必与代码有关。
-- **需要参照代码库。** 使用 [grill-with-docs](https://aihero.dev/skills-grill-with-docs)。它采用相同的访谈方式，但有[状态](https://www.aihero.dev/ai-coding-dictionary/stateful)：会读取代码，并将学到的内容记录在 `GLOSSARY.md` 和 ADR 中。
+- **需要参照代码库。** 使用 [grill-with-docs](https://aihero.dev/skills-grill-with-docs)。它采用相同的访谈方式，但有[状态](https://www.aihero.dev/ai-coding-dictionary/stateful)：会读取代码，将术语记录在 `GLOSSARY.md`，并通过项目已安装的 OpenSpec 工作流记录实际决定。
 - **单次会话无法处理的事情。** 使用 [wayfinder](https://aihero.dev/skills-wayfinder)。它会将工作绘成地图，并在其中安排追问会话。
 
 关闭[计划模式](https://www.aihero.dev/ai-coding-dictionary/agent-mode)。计划模式会促使代理赶快产出计划，而你希望它继续提问。
@@ -71,6 +71,6 @@ When grilling, ask one question at a time.
 
 `grill-me` 是一个**可在任何地方、用于任何主题的独立技能**。由于它无状态，因此可以随处使用。它不需要代码仓库、工作区或设置，也不假定想法与软件有关。人们会用它考虑业务决定、写作和下一步行动：任何自己无法清楚思考的事情。
 
-它与 [grill-with-docs](https://aihero.dev/skills-grill-with-docs) 唯一的差别是可移植性。后者也进行相同访谈，但会读取代码库作为参照，并将学到的内容记录在 `GLOSSARY.md` 和 ADR 中。两者底层都使用 [grilling](https://aihero.dev/skills-grilling) 技能。`grill-me` 是由用户调用且不保留状态的入口。
+它与 [grill-with-docs](https://aihero.dev/skills-grill-with-docs) 唯一的差别是可移植性。后者也进行相同访谈，但会读取代码库作为参照，将术语记录在 `GLOSSARY.md`，并通过项目已安装的 OpenSpec 工作流记录实际决定。两者底层都使用 [grilling](https://aihero.dev/skills-grilling) 技能。`grill-me` 是由用户调用且不保留状态的入口。
 
 如果追问的内容最后确实变成软件工作，你可以把同一段对话交给 [to-spec](https://aihero.dev/skills-to-spec)，继续进入构建流程(这是一个选项，不是此技能的目的)。如果不确定应使用哪种流程，[ask-matt](https://aihero.dev/skills-ask-matt) 会为你指引。

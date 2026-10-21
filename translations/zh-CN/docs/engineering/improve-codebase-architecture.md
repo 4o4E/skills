@@ -27,9 +27,9 @@
 
 ## 前置条件
 
-运行不需要任何前置条件。如果存在 `GLOSSARY.md` 或 `docs/adr/` 下的 ADR，技能会阅读它们，并使用领域自己的名词。这样，候选项会称作"加深 Order 接收模块"，而不是"重构 FooBarHandler"。
+运行不需要任何前置条件。如果存在 `GLOSSARY.md`、相关 OpenSpec 规格和已确认决定，技能会阅读它们，并使用领域自己的名词。这样，候选项会称作"加深 Order 接收模块"，而不是"重构 FooBarHandler"。提案不算已确认决定。
 
-它会写入两个位置。报告写到仓库以外的 `<tmpdir>/architecture-review-<timestamp>.html`。在深入讨论的过程中，它会向 `GLOSSARY.md` 添加术语或明确术语；如果文件不存在则会创建。它还会提议将被拒绝的候选项记录为 ADR，以免未来运行时再次提出。
+报告写到仓库以外的 `<tmpdir>/architecture-review-<timestamp>.html`。在深入讨论的过程中，它会向 `GLOSSARY.md` 添加术语或明确术语；如果文件不存在则会创建。每项实际决定都会通过项目已安装的官方 OpenSpec 工作流记录，无需再次询问确认。如果工作流不可用，记录会保持未完成，直到满足前置条件。
 
 ## 深度，以及如何在报告中寻找
 
@@ -97,10 +97,10 @@
 
 - 候选项使用领域概念，而不是发明的类名称："Order 接收模块"，而不是"FooBarHandler"。
 - 候选项涉及你最近编辑过的文件，而不是无人触碰的仓库区域。
-- 运行期间没有代码更改。唯一新增文件是临时目录中的 HTML 报告。
+- 讨论候选项之前，输出是临时目录中的 HTML 报告，代码保持不变。讨论期间，已解决的术语会更新到术语表，已确认的决定会通过 OpenSpec 记录。
 - 生成报告后就停止，并询问你想选择哪个候选项，不会自行继续。
 - 每张卡片都从局部集中度或调用方收益角度说明收益，并指出哪些测试会更简单，而不只是声称"代码更干净"。
-- 你因为长期原因拒绝候选项时，它会提议记录 ADR，以免下次运行时重新提出。
+- 每项实际决定都通过项目已安装的官方 OpenSpec 工作流记录，并明确说明用户提供的理由和确认来源。
 
 ## 它在工作流程中的位置
 
@@ -108,6 +108,6 @@
 
 - [codebase-design](https://aihero.dev/skills-codebase-design) 提供每个候选项都要使用的深度和接缝词汇。
 - [grilling](https://aihero.dev/skills-grilling) 在你选定候选项后梳理决策过程。
-- [domain-modeling](https://aihero.dev/skills-domain-modeling) 在作出决策时维护 `GLOSSARY.md` 和 ADR。
+- [domain-modeling](https://aihero.dev/skills-domain-modeling) 在决定形成时维护 `GLOSSARY.md` 和已确认决定。
 
 它的输出是一项想法，会通过 [grill-with-docs](https://aihero.dev/skills-grill-with-docs) 或 [to-spec](https://aihero.dev/skills-to-spec) 返回主要构建流程。主流程末尾的对应技能是 [retro](https://aihero.dev/skills-retro)。本技能改进代理要处理的代码；`retro` 则在构建结束后改进外围环境(检查、标准、指导文件)。如果不确定某种情况适合什么技能，[ask-matt](https://aihero.dev/skills-ask-matt) 会在整组技能中进行引导。

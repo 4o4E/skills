@@ -1,42 +1,21 @@
 ---
 name: domain-modeling
-description: 建立并打磨项目的领域模型。适用于讨论代码库术语、撰写或编辑 GLOSSARY.md，或记录、编辑 ADR。
+description: 建立并打磨项目的领域模型。适用于讨论代码库术语、撰写或编辑 GLOSSARY.md，或通过 OpenSpec 记录、重新审视项目决定。
 ---
 
 # 领域建模
 
 在设计过程中主动建立并打磨项目的领域模型。这是一项*主动*实践：质疑术语、设想边缘情形，并在词义和决定刚刚明确时立即写入术语表和决策记录。(仅为了解词汇而*阅读* `GLOSSARY.md` 不属于此技能：任何技能都可以养成这个简单习惯。此技能用于修改模型，而不仅仅是使用模型。)
 
-## 文件结构
+## 项目文档
 
-大多数仓库只有一个上下文：
+单一上下文使用根目录的 `GLOSSARY.md`。存在 `GLOSSARY-MAP.md` 时，按照映射找到相关上下文的术语表。只有在确认第一个术语时才创建术语表。
 
-```mermaid
-flowchart TD
-    Root[仓库根目录] --> Glossary[GLOSSARY.md]
-    Root --> Docs[docs/]
-    Docs --> ADR[adr/]
-    ADR --> ADR1[0001-event-sourced-orders.md]
-    ADR --> ADR2[0002-postgres-for-write-model.md]
-    Root --> Src[src/]
-```
+使用目标项目已安装的[官方 OpenSpec](https://github.com/Fission-AI/OpenSpec) skills 或命令记录决定。记录或重新审视决定前，先阅读项目配置和相关现有规格及变更产物。区分当前已接受的决定、提案和历史选择；当理由有参考价值时，查阅相关归档。
 
-如果根目录存在 `GLOSSARY-MAP.md`，则仓库有多个上下文。该映射会指向每个上下文所在的位置：
+OpenSpec 负责产物格式、存储位置、变更选择和生命周期操作。遵循其已安装的工作流和项目现有配置；此技能提供已确认的决定作为输入。此集成只负责交接给 OpenSpec，不另建平行的决定存储，也不在这里维护 OpenSpec 模板、schema 或命令。
 
-```mermaid
-flowchart TD
-    Root[仓库根目录] --> Map[GLOSSARY-MAP.md]
-    Root --> Docs[docs/adr/：全系统决策]
-    Root --> Src[src/]
-    Src --> Ordering[ordering/]
-    Ordering --> OrderGlossary[GLOSSARY.md]
-    Ordering --> OrderADR[docs/adr/：上下文专属决策]
-    Src --> Billing[billing/]
-    Billing --> BillingGlossary[GLOSSARY.md]
-    Billing --> BillingADR[docs/adr/]
-```
-
-按需创建文件：只有需要写入内容时才创建。如果不存在 `GLOSSARY.md`，则在第一个术语得到确认时创建。如果不存在 `docs/adr/`，则在需要第一个 ADR 时创建。
+如果目标项目没有可用的官方 OpenSpec，或需要初始化，应报告此前置条件以及决定记录尚未完成。可以继续独立的术语表工作或调查；获得授权后，使用官方设置工作流。
 
 ## 会话期间
 
@@ -62,12 +41,10 @@ flowchart TD
 
 `GLOSSARY.md` 不应包含任何实现细节。不要把 `GLOSSARY.md` 当作规格说明、草稿区或实现决策存放处。它只是术语表。
 
-### 谨慎提出 ADR
+### 通过 OpenSpec 记录已确认的决定
 
-只有以下三项全部成立时才提出创建 ADR：
+每当人工输入确定或改变一项决定时，就在会话当时通过项目的官方 OpenSpec 工作流记录。包括业务规则、工作范围、验收条件、架构和例外情况。记录已确认的选择、适用范围、实际确认来源，以及用户提供的理由或被否决的替代方案。未说明的理由应保留为未知，并区分代理建议与用户决定。
 
-1. **难以撤销**：以后改变主意的代价不容忽视
-2. **没有背景时会令人意外**：未来的读者会想"为什么要这样做？"
-3. **确实存在取舍**：有真正可行的替代方案，并且你基于具体原因选择了其中一个
+使用相关的现有变更；需要时，让官方工作流建立变更。重复确认可以引用现有记录。记录已经确认的决定无需再次提问；只有实质性未决选择会影响结果时才提问。决定改变时，通过 OpenSpec 更新受影响的产物，并明确新的适用范围。
 
-缺少任何一项，就跳过 ADR。使用 [ADR-FORMAT.md](./ADR-FORMAT.md) 中的格式。
+在报告决定已经记录之前，先验证官方工作流确实保存了内容，并报告其位置。只更新术语表不代表决定记录已经完成。

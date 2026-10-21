@@ -67,4 +67,4 @@
 
 ## 适用范围
 
-这是一项可以随时使用的独立参考资料，适用于全部技能，而不是单一技能。这里的每项技能都使用它撰写；代理还需要阅读其他技能所产出的文档时(例如 `GLOSSARY.md` 与其 ADR、规格说明或工单)，它也适用。直接调用它的技能是 [retro](https://aihero.dev/skills-retro)，后者在提出任何指导文件或技能之前会先加载此参考资料。如果不确定应该使用哪种技能或流程，[ask-matt](https://aihero.dev/skills-ask-matt) 会为你指引。
+这是一项可以随时使用的独立参考资料，适用于全部技能，而不是单一技能。这里的每项技能都使用它撰写；代理还需要阅读其他技能所产出的文档时(例如 `GLOSSARY.md`、OpenSpec 规格和决定、issue tracker 规格说明或工单)，它也适用。直接调用它的技能是 [retro](https://aihero.dev/skills-retro)，后者在提出任何指导文件或技能之前会先加载此参考资料。如果不确定应该使用哪种技能或流程，[ask-matt](https://aihero.dev/skills-ask-matt) 会为你指引。

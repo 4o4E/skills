@@ -106,4 +106,4 @@ issue tracker 配置也决定外部 PR 是否可以作为请求入口，以及�
 
 ## 所在流程
 
-`triage` 是一个**工作入口**，不是主流程中的一步。主流程从你自己的想法开始(深入追问、规格说明、工单、实现、审查)。`triage` 是处理他人提交工作的并行路径。两条路径的终点相同：带有 `ready-for-agent` 标签和工作说明的 issue。[implement](https://aihero.dev/skills-implement) 会像领取 [to-tickets](https://aihero.dev/skills-to-tickets) 工单一样处理这类 issue。请求需要补充信息才能写成工作说明时，`triage` 会同时运行 [grilling](https://aihero.dev/skills-grilling) 和 [domain-modeling](https://aihero.dev/skills-domain-modeling)，每次一轮问题，让决定在你作出时记入 `GLOSSARY.md` 和 ADR。如果你不确定自己应走哪条路径，[ask-matt](https://aihero.dev/skills-ask-matt) 会为你指路。
+`triage` 是一个**工作入口**，不是主流程中的一步。主流程从你自己的想法开始(深入追问、规格说明、工单、实现、审查)。`triage` 是处理他人提交工作的并行路径。两条路径的终点相同：带有 `ready-for-agent` 标签和工作说明的 issue。[implement](https://aihero.dev/skills-implement) 会像领取 [to-tickets](https://aihero.dev/skills-to-tickets) 工单一样处理这类 issue。请求需要补充信息才能写成工作说明时，`triage` 会同时运行 [grilling](https://aihero.dev/skills-grilling) 和 [domain-modeling](https://aihero.dev/skills-domain-modeling)，每次一轮问题，由已加载的 `domain-modeling` 技能更新 `GLOSSARY.md` 并通过 OpenSpec 记录决定。如果你不确定自己应走哪条路径，[ask-matt](https://aihero.dev/skills-ask-matt) 会为你指路。

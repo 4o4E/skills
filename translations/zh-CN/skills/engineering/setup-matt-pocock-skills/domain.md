@@ -6,37 +6,13 @@
 
 - 仓库根目录的 **`GLOSSARY.md`**，或
 - 如果存在，仓库根目录的 **`GLOSSARY-MAP.md`**：它会为每个上下文指向一个 `GLOSSARY.md`。阅读所有与主题相关的文件。
-- **`docs/adr/`**：阅读涉及你即将处理领域的 ADR。在多上下文仓库中，还要检查 `src/<context>/docs/adr/` 中上下文范围内的决策。
+- **官方 OpenSpec 项目上下文**：遵循项目现有配置和已安装的 OpenSpec 工作流，查找相关的当前规格和已确认决定。需要理由时阅读相关变更产物或归档。提议中的变更和历史决定不会自动成为当前约束。
 
-如果其中任何文件不存在，**请安静地继续**。不要指出这些文件缺失，也不要建议预先创建它们。`/domain-modeling` 技能(通过 `/grill-with-docs` 和 `/improve-codebase-architecture` 使用)会在术语或决策实际得到确认时按需创建这些文件。
+术语表缺失不会阻碍探索。如果 OpenSpec 不可用，仍可使用可读取的现有记录开展调查；任务需要记录或更新决定时，应明确报告此前置条件。
 
-## 文件结构
+## 项目布局
 
-单一上下文仓库(大多数仓库)：
-
-```mermaid
-flowchart TD
-    Root[仓库根目录] --> Glossary[GLOSSARY.md]
-    Root --> Docs[docs/adr/]
-    Docs --> ADR1[0001-event-sourced-orders.md]
-    Docs --> ADR2[0002-postgres-for-write-model.md]
-    Root --> Src[src/]
-```
-
-多上下文仓库(根目录存在 `GLOSSARY-MAP.md`)：
-
-```mermaid
-flowchart TD
-    Root[仓库根目录] --> Map[GLOSSARY-MAP.md]
-    Root --> SystemADR[docs/adr/：全系统决策]
-    Root --> Src[src/]
-    Src --> Ordering[ordering/]
-    Ordering --> OrderGlossary[GLOSSARY.md]
-    Ordering --> OrderADR[docs/adr/：上下文专属决策]
-    Src --> Billing[billing/]
-    Billing --> BillingGlossary[GLOSSARY.md]
-    Billing --> BillingADR[docs/adr/]
-```
+单一上下文使用根目录的术语表。存在 `GLOSSARY-MAP.md` 时，按照映射找到相关上下文的术语表。设置时，在此记录项目专属的 OpenSpec 指引。OpenSpec 负责其产物格式、位置和生命周期；此文件只为使用者指向现有设置。
 
 ## 使用术语表中的词汇
 
@@ -44,8 +20,8 @@ flowchart TD
 
 如果你需要的概念还没有列入术语表，这就是一个信号：要么你正在发明项目并未使用的语言(请重新考虑)，要么确实存在缺口(为 `/domain-modeling` 记录下来)。
 
-## 标出 ADR 冲突
+## 尊重已确认的决定
 
-如果输出与现有 ADR 矛盾，请明确指出，而不是默默覆盖：
+提案与当前已确认的决定冲突时，引用相关 OpenSpec 产物并说明重新审议的具体理由。实施实质性变更前，先取得对该变更的决定。
 
-> _与 ADR-0007(event-sourced orders)矛盾，但值得重新审议，因为……_
+记录人工决定或解决领域术语时，调用 Skill 工具并使用 `domain-modeling`。它维护术语表，并将决定记录交给项目官方 OpenSpec 工作流。

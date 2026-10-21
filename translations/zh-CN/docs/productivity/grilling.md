@@ -13,7 +13,7 @@
 | 你的情况 | 使用方式 |
 | --- | --- |
 | 你不在工作目录中 | [grill-me](https://aihero.dev/skills-grill-me)：相同的[会话](https://www.aihero.dev/ai-coding-dictionary/session)，名称可由你调用，代理不会自行调用 |
-| 你在工作目录中 | [grill-with-docs](https://aihero.dev/skills-grill-with-docs)：进行相同的会话，并在过程中写入 `GLOSSARY.md` 和 ADR |
+| 你在工作目录中 | [grill-with-docs](https://aihero.dev/skills-grill-with-docs)：进行相同的会话，将术语写入 `GLOSSARY.md`，并通过 OpenSpec 记录实际决定 |
 | 工作量大到无法在一次会话中处理 | [wayfinder](https://aihero.dev/skills-wayfinder)：绘制地图，并在决策工单中进行追问 |
 | 无法通过讨论决定的问题：某件事看起来或感觉上应当如何 | [prototype](https://aihero.dev/skills-prototype)：先构建一次性版本，再回来继续 |
 | 你自己编写的技能需要访谈流程 | 在该技能中调用 `/grilling`，不要另写一套访谈流程 |
@@ -38,7 +38,7 @@
 | --- | --- |
 | 设计树、前沿、轮次、问题格式、事实与决定的区别 | 本页面 |
 | 会话应持续多久、无法靠讨论回答的问题该怎么办、怎样避免只点头同意 | [grill-me](https://aihero.dev/skills-grill-me) |
-| 什么内容会写入 `GLOSSARY.md`，什么内容会成为 ADR | [grill-with-docs](https://aihero.dev/skills-grill-with-docs) |
+| 如何将术语写入 `GLOSSARY.md`，以及如何通过 OpenSpec 记录实际决定 | [grill-with-docs](https://aihero.dev/skills-grill-with-docs) |
 
 ## 常见问题
 
